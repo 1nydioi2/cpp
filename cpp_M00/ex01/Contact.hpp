@@ -5,20 +5,20 @@
 class	Contact
 {
 	public	:
-		Contact()
-		~Contact()
+		Contact();
+		~Contact();
 
-		void	create_contact(std::string[5] infos);
-		void	show_
-
+		void	copy(Contact source);
+		void	get_info(char info);
+		bool	is_conform();
 
 	private	:
-		char		index;
-		std::string	f_name;
-		std::string	l_name;
-		std::string	n_name;
-		std::string	phone_num;
-		std::string	secret;
+		char		index;	//0
+		std::string	f_name; //1
+		std::string	l_name; //2
+		std::string	n_name; //3
+		std::string	ph_num; //4
+		std::string	secret; //5
 };
 
 
