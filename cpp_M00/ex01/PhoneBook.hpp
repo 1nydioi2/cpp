@@ -11,10 +11,10 @@ class	PhoneBook
 
 		void	add_contact();
 		void	search_contact(char index);
-		void	search_contact_list();
+		bool	search_contact_list();
 
 	private	:
-		Contact	[8]contact_list;
+		Contact	contact_list[8];
 		char	tracker;
 		char	c_num;
 };

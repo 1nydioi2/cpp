@@ -1,5 +1,5 @@
 #include "externals.hpp"
-#include "contact.hpp"
+#include "Contact.hpp"
 
 
 Contact::Contact()
@@ -10,6 +10,32 @@ Contact::Contact()
 Contact::~Contact()
 {
 	return ;
+}
+
+void Contact::add_info(char info, char *src[513])
+{
+	switch (info)
+	{
+		case 1:
+			this->f_name.copy(src);
+			break;
+		case 2:
+			this->l_name.copy(src);
+			break;
+		case 3:
+			this->n_name.copy(src);
+			break;
+		case 4:
+			this->ph_num.copy(src);
+			break;
+		case 5:
+			this->secret.copy(src);
+			break;
+		default:
+			return ;
+	}
+	return ;
+
 }
 
 void Contact::copy(Contact source)
@@ -26,9 +52,6 @@ void Contact::get_info(char info)
 {
 	switch (info)
 	{
-		case 0:
-			std::cout << this->index;
-			break;
 		case 1:
 			std::cout << this->f_name;
 			break;
@@ -54,9 +77,9 @@ bool Contact::is_conform()
 {
 	char c = 0;
 
-	for (char i = 0; i < this->f_name.lenght(); i++)
+	for (size_t i = 0; i < this->f_name.length(); i++)
 	{
-		if !(std::isprint(this->f_name[i]))
+		if (!std::isprint(this->f_name[i]))
 			return (std::cout << "First name of contact is not conform" << std::endl, 0);
 		if (this->f_name[i] != ' ')
 			c++;
@@ -65,9 +88,9 @@ bool Contact::is_conform()
 		return (std::cout << "First name of contact is not conform" << std::endl, 0);
 
 	c = 0;
-	for (char i = 0; i < this->l_name.lenght(); i++)
+	for (size_t i = 0; i < this->l_name.length(); i++)
 	{
-		if !(std::isprint(this->l_name[i]))
+		if (!std::isprint(this->l_name[i]))
 			return (std::cout << "Last name of contact is not conform" << std::endl, 0);
 		if (this->l_name[i] != ' ')
 			c++;
@@ -76,9 +99,9 @@ bool Contact::is_conform()
 		return (std::cout << "Last name of contact is not conform" << std::endl, 0);
 
 	c = 0;
-	for (char i = 0; i < this->n_name.lenght(); i++)
+	for (size_t i = 0; i < this->n_name.length(); i++)
 	{
-		if !(std::isprint(this->n_name[i]))
+		if (!std::isprint(this->n_name[i]))
 			return (std::cout << "Nickname of contact is not conform" << std::endl, 0);
 		if (this->n_name[i] != ' ')
 			c++;
@@ -87,20 +110,20 @@ bool Contact::is_conform()
 		return (std::cout << "Nickname of contact is not conform" << std::endl, 0);
 
 	c = 0;
-	for (char i = 0; i < this->ph_num.lenght(); i++)
+	for (size_t i = 0; i < this->ph_num.length(); i++)
 	{
-		if !(std::isnum(this->ph_num[i]) || this->ph_num[i] == '.' || this->ph_num[i] == '#' || this->ph_num[i] == '+' || this->ph_num[i] == ' ')
+		if (!(std::isdigit(this->ph_num[i]) || this->ph_num[i] == '.' || this->ph_num[i] == '#' || this->ph_num[i] == '+' || this->ph_num[i] == ' '))
 			return (std::cout << "Last name of contact is not conform" << std::endl, 0);
-		if (this->ph_num[i].isdigit())
+		if (std::isdigit(this->ph_num[i]))
 			c++;
 	}
 	if (!c)
 		return (std::cout << "Phone number of contact is not conform" << std::endl, 0);
 
 	c = 0;
-	for (char i = 0; i < this->secret.lenght(); i++)
+	for (size_t i = 0; i < this->secret.length(); i++)
 	{
-		if !(std::isprint(this->secret[i]))
+		if (!std::isprint(this->secret[i]))
 			return (std::cout << "Darkest Secret of contact is not conform" << std::endl, 0);
 		if (this->secret[i] != ' ')
 			c++;

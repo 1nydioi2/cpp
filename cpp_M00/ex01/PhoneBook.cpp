@@ -16,27 +16,42 @@ PhoneBook::~PhoneBook()
 
 void PhoneBook::add_contact()
 {
-	Contact new_contact;
+	Contact		new_c;
+	char		buff[513];
 
 	std::cout << "Please enter contact's first name (up to 64 characters) : ";
-	std::cin.get(new_contact.f_name, 64) << std::endl;
+	std::cin.get(&buff, 64) << std::endl;
+	new_c.add_info(1, &buff);
+	clear513(&buff);
+
 	std::cout << "Please enter contact's last name (up to 64 characters) : ";
-	std::cin.get(new_contact.l_name, 64) << std::endl;
+	std::cin.get(&buff, 64) << std::endl;
+	new_c.add_info(2, &buff);
+	clear513(&buff);
+	
 	std::cout << "Please enter contact's nickname (up to 64 characters) : ";
-	std::cin.get(new_contact.n_name, 64) << std::endl;
+	std::cin.get(&buff, 64) << std::endl;
+	new_c.add_info(3, &buff);
+	clear(&buff);
+	
 	std::cout << "Please enter contact's phone number (up to 16 digits) : ";
-	std::cin.get(new_contact.ph_num, 16) << std::endl;
+	std::cin.get(&buff, 16) << std::endl;
+	new_c.add_info(4, &buff);
+	clear(&buff);
+	
 	std::cout << "Please enter contact's darkest secret (up to 512 characters) : ";
-	std::cin.get(new_contact.secret, 512) << std::endl;
+	std::cin.get(&buff, 512) << std::endl;
+	new_c.add_info(5, &buff);
+	clear(&buff);
 	std::cout << std::endl;	
 
-	if (!new_contact.is_conform())
+	if (!new_c.is_conform())
 		return ;
 	if (this->tracker == 8)
 		this->tracker = 0;
 
-	this->contact_list[tracker++].copy(new_contact);
-	std::cout << new_contact->f_name << " " << new_contact->l_name << "has been added to your phonebook.\n\n" << std::endl;
+	this->contact_list[tracker++].copy(new_c);
+	std::cout << new_c->f_name << " " << new_c->l_name << "has been added to your phonebook.\n\n" << std::endl;
 	this->c_num += (this->c_num < 8);
 	return ;
 }
@@ -48,20 +63,20 @@ void PhoneBook::search_contact(char index)
 		std::cout << "The provided index does not belong to any of your contacts." << std::endl;
 		return ;
 	}
-	std::cout << "First Name : " << this->contact_list[index - 1].f_name << std::endl;
-	std::cout << "Last Name : " << this->contact_list[index - 1].l_name << std::endl;
-	std::cout << "NickName : " << this->contact_list[index - 1].n_name << std::endl;
-	std::cout << "Phone Number : " << this->contact_list[index - 1].ph_num << std::endl;
-	std::cout << "Darkest Secret : " << this->contact_list[index - 1].secret << std::endl;
+	std::cout << "First Name : " << this->contact_list[index - 1].get_info(1) << std::endl;
+	std::cout << "Last Name : " << this->contact_list[index - 1].get_info(2) << std::endl;
+	std::cout << "NickName : " << this->contact_list[index - 1].get_info(3) << std::endl;
+	std::cout << "Phone Number : " << this->contact_list[index - 1].get_info(4) << std::endl;
+	std::cout << "Darkest Secret : " << this->contact_list[index - 1].get_info(5) << std::endl;
 	return ;
 }
 
-void PhoneBook::search_contact_list()
+bool PhoneBook::search_contact_list()
 {
 	if (this->c_num == 0)
 	{
 		std::cout << "Before parsing throughout your phonebook, you should first add at least one contact." << std::endl;
-		return ;
+		return (0);
 	}
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 	for (char i = 0; i < c_num; i++)
@@ -91,5 +106,5 @@ void PhoneBook::search_contact_list()
 			std::cout << this->contact_list[i].n_name << "|" << std::endl;
 		}
 	}
-	return ;
+	return (1);
 }
