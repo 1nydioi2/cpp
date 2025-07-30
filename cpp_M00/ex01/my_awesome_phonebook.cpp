@@ -16,7 +16,7 @@ void	clear7(char cmd[7])
 
 bool	parser(char cmd[7], PhoneBook pb)
 {
-	char		index = 0;
+	int		index = 0;
 	std::string	input;
 
 	input.copy(cmd, 7);

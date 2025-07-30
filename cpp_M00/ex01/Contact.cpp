@@ -12,24 +12,24 @@ Contact::~Contact()
 	return ;
 }
 
-void Contact::add_info(char info, char *src[513])
+void Contact::add_info(char info, char src[513])
 {
 	switch (info)
 	{
 		case 1:
-			this->f_name.copy(src);
+			this->f_name = src;
 			break;
 		case 2:
-			this->l_name.copy(src);
+			this->l_name = src;
 			break;
 		case 3:
-			this->n_name.copy(src);
+			this->n_name = src;
 			break;
 		case 4:
-			this->ph_num.copy(src);
+			this->ph_num = src;
 			break;
 		case 5:
-			this->secret.copy(src);
+			this->secret = src;
 			break;
 		default:
 			return ;
@@ -48,31 +48,31 @@ void Contact::copy(Contact source)
 	return ;
 }
 
-void Contact::get_info(char info)
+/*void Contact::get_info(char info)
 {
 	switch (info)
 	{
 		case 1:
-			std::cout << this->f_name;
+			std::cout << this->f_name << std::endl;
 			break;
 		case 2:
-			std::cout << this->l_name;
+			std::cout << this->l_name << std::endl;
 			break;
 		case 3:
-			std::cout << this->n_name;
+			std::cout << this->n_name << std::endl;
 			break;
 		case 4:
-			std::cout << this->ph_num;
+			std::cout << this->ph_num << std::endl;
 			break;
 		case 5:
-			std::cout << this->secret;
+			std::cout << this->secret << std::endl;
 			break;
 		default:
 			return ;
 	}
 	return ;
 }
-
+*/
 bool Contact::is_conform()
 {
 	char c = 0;
