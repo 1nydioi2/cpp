@@ -8,7 +8,7 @@ class	CaseShiftingString
 		CaseShiftingString(const char **src, const int src_size);
 		~CaseShiftingString(void);
 
-		void ft_print_string(void);
+		void	ft_print_string(void);
 
 
 	private	:

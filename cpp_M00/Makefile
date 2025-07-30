@@ -2,11 +2,11 @@ COMPILER = c++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = megaphone
+NAME = my_awesome_phonebook
 
-SOURCES = CaseShiftingString.cpp \
-	   megaphone.cpp
-	   #CaseShiftingString.hpp \
+SOURCES = my_awesome_phonebook.cpp \
+	   Contact.cpp\
+	   PhoneBook.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

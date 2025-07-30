@@ -2,24 +2,24 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-void	clear513(char [513]buff)
+void	clear513(char buff[513])
 {
 	for (short i = 0; i < 513; i++)
-		buff[0][i] = '\0';
+		buff[i] = '\0';
 }
 
-void	clear7(char[7] cmd)
+void	clear7(char cmd[7])
 {
 	for (short i = 0; i < 7; i++)
-		cmd[0][i] = '\0';
+		cmd[i] = '\0';
 }
 
-bool	parser(char *cmd[7], PhoneBook pb)
+bool	parser(char cmd[7], PhoneBook pb)
 {
 	char		index = 0;
 	std::string	input;
 
-	input.copy(*cmd, 7);
+	input.copy(cmd, 7);
 	if (input.compare("ADD") == 0)
 		pb.add_contact();
 	else if (input.compare("SEARCH") == 0)
@@ -36,7 +36,6 @@ bool	parser(char *cmd[7], PhoneBook pb)
 	else
 		std::cout << "Would you be so kind to type in a valid command ?" << std::endl;
 	return (1);
-
 }
 
 int	main()
@@ -53,9 +52,9 @@ int	main()
 	while (go) 
 	{
 		std::cout << "Please enter a command : ";
-		clear7(&cmd);
-		std::cin.get(&cmd, 6);
-		go = parser(&cmd, pb);
+		clear7(cmd);
+		std::cin.get(cmd, 6);
+		go = parser(cmd, pb);
 	}
 	return (0);
 }

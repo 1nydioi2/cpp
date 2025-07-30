@@ -56,7 +56,7 @@ void PhoneBook::add_contact()
 	return ;
 }
 
-void PhoneBook::search_contact(char index)
+void PhoneBook::search_contact(char index) const
 {
 	if (index > this->c_num || index < 1)
 	{
@@ -71,7 +71,7 @@ void PhoneBook::search_contact(char index)
 	return ;
 }
 
-bool PhoneBook::search_contact_list()
+bool PhoneBook::search_contact_list() const
 {
 	if (this->c_num == 0)
 	{
