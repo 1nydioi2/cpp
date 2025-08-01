@@ -2,32 +2,21 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-void	clear513(char buff[513])
+bool	parser(std::string &input, PhoneBook &pb)
 {
-	for (short i = 0; i < 513; i++)
-		buff[i] = '\0';
-}
-
-void	clear7(char cmd[7])
-{
-	for (short i = 0; i < 7; i++)
-		cmd[i] = '\0';
-}
-
-bool	parser(char cmd[7], PhoneBook pb)
-{
-	int		index = 0;
-	std::string	input;
-
-	input.copy(cmd, 7);
+	char		index = 0;
+	std::string	garbage;
+	
 	if (input.compare("ADD") == 0)
 		pb.add_contact();
 	else if (input.compare("SEARCH") == 0)
 	{
 		if (pb.search_contact_list())
 		{
-			std::cin >>  index;
-			pb.search_contact(index);
+			std::cout << "Which contact's informations would you like to see ? (Enter their index) : ";
+			std::cin.get(index);	
+			std::getline(std::cin, garbage);
+			pb.search_contact(index - '0');
 		}
 		return (1);
 	}
@@ -41,10 +30,10 @@ bool	parser(char cmd[7], PhoneBook pb)
 int	main()
 {
 	PhoneBook	pb;
-	char		cmd[7];
-	bool		go = 1;
+	std::string	cmd;
+	bool		go = true;
 
-	std::cout << "This is a simple phonebook that allows you to register 8 contacts." << std::endl;
+	std::cout << "\nThis is a simple phonebook that allows you to register 8 contacts." << std::endl;
 	std::cout << "There are three commands let to your disposal :" << std::endl;
 	std::cout << "- ADD : This command lets you  create a new contact and then add it to the phonebook." << std::endl;
 	std::cout << "- SEARCH : This command displays all the contacts registered, then asks you to choose which contact informations you want to look at by entering their index." << std::endl;
@@ -52,8 +41,12 @@ int	main()
 	while (go) 
 	{
 		std::cout << "Please enter a command : ";
-		clear7(cmd);
-		std::cin.get(cmd, 6);
+		std::getline(std::cin, cmd);
+		if (std::cin.eof())
+		{
+			std::cout << "\nEOF reached, exiting program..." << std::endl;	
+			return (0);
+		}
 		go = parser(cmd, pb);
 	}
 	return (0);

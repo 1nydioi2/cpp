@@ -12,7 +12,7 @@ Contact::~Contact()
 	return ;
 }
 
-void Contact::add_info(char info, char src[513])
+void Contact::add_info(char info, const std::string &src)
 {
 	switch (info)
 	{
@@ -48,31 +48,74 @@ void Contact::copy(Contact source)
 	return ;
 }
 
-/*void Contact::get_info(char info)
+std::string	Contact::get_info(char info, char type) const
 {
 	switch (info)
 	{
-		case 1:
-			std::cout << this->f_name << std::endl;
+		case 'f':
+			switch (type)
+			{
+				case 'd':
+					return (this->f_name);
+					break;
+				case '9':
+					return (this->f_name.substr(9));
+					break;
+			}
 			break;
-		case 2:
-			std::cout << this->l_name << std::endl;
+		case 'l':
+			switch (type)
+			{
+				case 'd':
+					return (this->l_name);
+					break;
+				case '9':
+					return (this->l_name.substr(9));
+					break;
+			}
 			break;
-		case 3:
-			std::cout << this->n_name << std::endl;
+
+		case 'n':
+			switch (type)
+			{
+				case 'd':
+					return (this->n_name);
+					break;
+				case '9':
+					return (this->n_name.substr(9));
+					break;
+			}
 			break;
-		case 4:
-			std::cout << this->ph_num << std::endl;
+
+		case 'p':
+			switch (type)
+			{
+				case 'd':
+					return (this->ph_num);
+					break;
+				case '9':
+					return (this->ph_num.substr(9));
+					break;
+			}
 			break;
-		case 5:
-			std::cout << this->secret << std::endl;
+
+		case 's':
+			switch (type)
+			{
+				case 'd':
+					return (this->secret);
+					break;
+				case '9':
+					return (this->secret.substr(9));
+					break;
+			}
 			break;
 		default:
-			return ;
+			return (NULL);
 	}
-	return ;
+	return (NULL);
 }
-*/
+
 bool Contact::is_conform()
 {
 	char c = 0;
@@ -113,7 +156,7 @@ bool Contact::is_conform()
 	for (size_t i = 0; i < this->ph_num.length(); i++)
 	{
 		if (!(std::isdigit(this->ph_num[i]) || this->ph_num[i] == '.' || this->ph_num[i] == '#' || this->ph_num[i] == '+' || this->ph_num[i] == ' '))
-			return (std::cout << "Last name of contact is not conform" << std::endl, 0);
+			return (std::cout << "Phone number of contact is not conform" << std::endl, 0);
 		if (std::isdigit(this->ph_num[i]))
 			c++;
 	}

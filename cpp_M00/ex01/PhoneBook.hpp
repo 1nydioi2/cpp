@@ -15,7 +15,7 @@ class	PhoneBook
 
 	private	:
 		Contact	contact_list[8];
-		int	tracker;
+		int		tracker;
 		char	c_num;
 };
 
