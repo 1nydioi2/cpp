@@ -4,7 +4,7 @@
 
 class	Contact
 {
-	public	:
+	public:
 		Contact();
 		~Contact();
 
@@ -13,7 +13,7 @@ class	Contact
 		std::string	get_info(char info, char type) const;
 		bool		is_conform();
 	
-	private	:
+	private:
 		std::string	f_name; //f
 		std::string	l_name; //l
 		std::string	n_name; //n

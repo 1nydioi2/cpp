@@ -10,16 +10,15 @@ SOURCES = my_awesome_phonebook.cpp \
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
+CPP_V = -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(COMPILER) $(COMPILATION_FLAGS) $(OBJECTS) -o $(NAME)
+	$(COMPILER) $(CPP_V) $(COMPILATION_FLAGS) $(OBJECTS) -o $(NAME)
 
-std98: $(OBJECTS)
-	$(COMPILER) -std=c++98 $(COMPILATION_FLAGS) $(OBJECTS) -o $(NAME)
 %.o: %.cpp
-	$(COMPILER) -c $(COMPILATION_FLAGS) $< -o $@
+	$(COMPILER) -c $(CPP_V) $(COMPILATION_FLAGS) $< -o $@
 
 fclean: clean
 	rm -f $(NAME)
@@ -29,4 +28,4 @@ clean:
 
 re: fclean all
 
-.PHONY: fclean all clean re std98
+.PHONY: fclean all clean re

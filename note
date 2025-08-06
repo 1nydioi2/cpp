@@ -1,0 +1,17 @@
+#include <print>
+#include <string>
+#include <format>
+#include <iostream>
+#include <algorithm>
+
+int main()
+{
+    const char *world = "WORLD";
+    std::string foo = std::format("Hello, {}!\n", world);    
+    std::transform(foo.begin(), foo.end(), foo.begin(), [](char c) { return std::toupper(c); } );
+    
+    auto found_it = std::find_if(foo.begin(), foo.end(), [](char c) { return c % 4 == 0; });
+    if (found_it != foo.end()) {
+        std::println("Found `{}' at index {}", *found_it, found_it - foo.begin());
+    }
+}
