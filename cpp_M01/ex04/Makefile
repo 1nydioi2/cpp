@@ -1,6 +1,6 @@
 COMPILER = c++
 
-COMPILATION_FLAGS = -Wall -Wextra -Werror
+COMPILATION_FLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 NAME = sifl
 
