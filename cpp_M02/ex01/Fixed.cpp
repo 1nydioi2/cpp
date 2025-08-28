@@ -1,0 +1,52 @@
+#include "Fixed.hpp"
+#include "externals.hpp"
+
+
+
+Fixed::Fixed( void )
+{
+	std::cout << "Default Constructor called" << std::endl;
+	this->_value = 0;
+
+	return ;
+}
+
+Fixed::Fixed( const Fixed& source )
+{
+	std::cout << "Copy Constructor called" << std::endl;
+	this->_value = source.getRawBits();
+
+	return ;
+}
+
+Fixed::~Fixed( void )
+{
+	std::cout << "Destructor called" << std::endl;
+
+	return ;
+}
+
+
+void	Fixed::operator=( const Fixed& source )
+{
+	std::cout << "Copy Assignment Operator Overload called" << std::endl;
+	this->_value = source.getRawBits();
+
+	return ;
+}
+
+
+void	Fixed::setRawBits( const int raw )
+{
+	std::cout << "setRawBits method called" << std::endl;
+	this->_value = raw;
+
+	return ;
+}
+
+int	Fixed::getRawBits( void ) const
+{
+	std::cout << "getRawBits method called" << std::endl;
+	
+	return ( this->_value );
+}
