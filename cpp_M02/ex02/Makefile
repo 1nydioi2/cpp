@@ -2,7 +2,7 @@ COMPILER = c++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = ex01
+NAME = ex02
 
 SOURCES = main.cpp\
 	Fixed.cpp\

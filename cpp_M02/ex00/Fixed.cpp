@@ -3,6 +3,8 @@
 
 
 
+static const int Fixed::_fbits = 8;
+
 Fixed::Fixed( void )
 {
 	std::cout << "Default Constructor called" << std::endl;
