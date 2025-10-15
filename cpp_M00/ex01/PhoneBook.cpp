@@ -101,7 +101,7 @@ bool PhoneBook::search_contact_list()
 			std::cout << this->contact_list[i].get_info('l', 'd') << "|";
 		}
 		if (this->contact_list[i].get_info('n', 'd').length() > 10)
-			std::cout << this->contact_list[i].get_info('n', '9') << ".|";
+			std::cout << this->contact_list[i].get_info('n', '9') << ".|\n";
 		else
 		{
 			std::cout << std::setw(10);

@@ -59,7 +59,7 @@ std::string	Contact::get_info(char info, char type) const
 					return (this->f_name);
 					break;
 				case '9':
-					return (this->f_name.substr(9));
+					return (this->f_name.substr(0, 9));
 					break;
 			}
 			break;
@@ -70,7 +70,7 @@ std::string	Contact::get_info(char info, char type) const
 					return (this->l_name);
 					break;
 				case '9':
-					return (this->l_name.substr(9));
+					return (this->l_name.substr(0, 9));
 					break;
 			}
 			break;
@@ -82,7 +82,7 @@ std::string	Contact::get_info(char info, char type) const
 					return (this->n_name);
 					break;
 				case '9':
-					return (this->n_name.substr(9));
+					return (this->n_name.substr(0, 9));
 					break;
 			}
 			break;
@@ -94,7 +94,7 @@ std::string	Contact::get_info(char info, char type) const
 					return (this->ph_num);
 					break;
 				case '9':
-					return (this->ph_num.substr(9));
+					return (this->ph_num.substr(0, 9));
 					break;
 			}
 			break;
@@ -106,7 +106,7 @@ std::string	Contact::get_info(char info, char type) const
 					return (this->secret);
 					break;
 				case '9':
-					return (this->secret.substr(9));
+					return (this->secret.substr(0, 9));
 					break;
 			}
 			break;
