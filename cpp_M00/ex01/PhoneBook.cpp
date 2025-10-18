@@ -34,12 +34,12 @@ void PhoneBook::add_contact()
 	std::cout << std::endl;
 	new_c.add_info(3, buff);
 	
-	std::cout << "Please enter contact's phone number) : ";
+	std::cout << "Please enter contact's phone number : ";
 	std::getline(std::cin, buff);
 	std::cout << std::endl;
 	new_c.add_info(4, buff);
 	
-	std::cout << "Please enter contact's darkest secret) : ";
+	std::cout << "Please enter contact's darkest secret : ";
 	std::getline(std::cin, buff);
 	std::cout << std::endl;
 	new_c.add_info(5, buff);
