@@ -16,7 +16,10 @@ bool	parser(std::string &input, PhoneBook &pb)
 			std::cout << "Which contact's informations would you like to see ? (Enter their index) : ";
 			std::cin.get(index);	
 			std::getline(std::cin, garbage);
-			pb.search_contact(index - '0');
+			if (garbage.empty())
+				pb.search_contact(index - '0');
+			else
+				pb.search_contact('e');
 		}
 		return (1);
 	}
