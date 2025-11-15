@@ -1,6 +1,9 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
-# include "externals.hpp"
+# include <iostream>
+# include <iomanip>
+# include <string>
+# include <cmath>
 
 
 
