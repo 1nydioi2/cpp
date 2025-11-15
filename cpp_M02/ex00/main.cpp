@@ -1,4 +1,3 @@
-#include "externals.hpp"
 #include "Fixed.hpp"
 
 

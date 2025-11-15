@@ -1,9 +1,8 @@
 #include "Fixed.hpp"
-#include "externals.hpp"
 
 
 
-static const int Fixed::_fbits = 8;
+const int Fixed::_fbits = 8;
 
 Fixed::Fixed( void )
 {
