@@ -1,9 +1,9 @@
 #include "Fixed.hpp"
-#include "externals.hpp"
 
 
 
 const int Fixed::_fbits = 8;
+
 
 Fixed::Fixed( void )
 	: _value( 0 )
@@ -47,10 +47,117 @@ Fixed::~Fixed( void )
 
 void	Fixed::operator=( const Fixed& source )
 {
-	std::cout << "Copy Assignment Operator called" << std::endl;
+	std::cout << "Superior to Assignment Operator called" << std::endl;
 	if (&( *this ) != &source)
 		_value = source.getRawBits();
 	return ;
+}
+
+bool	Fixed::operator>( const Fixed& source )
+{
+	std::cout << "Superior Assignment Operator called" << std::endl;
+	if (_value > source.getRawBits())
+		return ( 1 );
+	else
+		return ( 0 );
+}
+
+bool	Fixed::operator<( const Fixed& source )
+{
+	std::cout << "Inferior Operator called" << std::endl;
+	if (_value < source.getRawBits())
+		return ( 1 );
+	else
+		return ( 0 );
+}
+
+bool	Fixed::operator>=( const Fixed& source )
+{
+	std::cout << "Superior or Equal Operator called" << std::endl;
+	if (_value >= source.getRawBits())
+		return ( 1 );
+	else
+		return ( 0 );
+}
+
+bool	Fixed::operator<=( const Fixed& source )
+{
+	std::cout << "Inferior or Equal Operator called" << std::endl;
+	if (_value <= source.getRawBits())
+		return ( 1 );
+	else
+		return ( 0 );
+}
+
+bool	Fixed::operator==( const Fixed& source )
+{
+	std::cout << "Equal Operator called" << std::endl;
+	if (_value == source.getRawBits())
+		return ( 1 );
+	else
+		return ( 0 );
+}
+
+bool	Fixed::operator!=( const Fixed& source )
+{
+	std::cout << "Inequal Operator called" << std::endl;
+	if (_value != source.getRawBits())
+		return ( 1 );
+	else
+		return ( 0 );
+}
+
+int	Fixed::operator+( const Fixed& source )
+{
+	std::cout << "Addition Operator called" << std::endl;
+		return ( _value + source.getRawBits());
+}
+
+int	Fixed::operator-( const Fixed& source )
+{
+	std::cout << "Substraction Operator called" << std::endl;
+
+		return ( _value - source.getRawBits());
+}
+
+int	Fixed::operator*( const Fixed& source )
+{
+	std::cout << "Multiplication Operator called" << std::endl;
+		return ( _value * source.getRawBits());
+}
+
+int	Fixed::operator/( const Fixed& source )
+{
+	std::cout << "Division Operator called" << std::endl;
+		return ( _value / source.getRawBits());
+}
+
+int	Fixed::operator++( void )
+{
+	std::cout << "Pre-Incrementation Operator called" << std::endl;
+		++_value;
+	return ( _value );
+}
+
+int	Fixed::operator++( int )
+{
+	std::cout << "Post-Incrementation Operator called" << std::endl;
+		++_value;
+	return ( _value - 1);
+}
+
+int	Fixed::operator--( void )
+{
+	std::cout << "Pre-Decrementation Operator called" << std::endl;
+		--_value;
+	return ( _value );
+}
+
+int	Fixed::operator--( int )
+{
+	std::cout << "Post-Decrementation Operator called" << std::endl;
+		--_value;
+	return ( _value + 1);
 }
 
 
@@ -82,4 +189,37 @@ std::ostream&	operator<<( std::ostream& outstream, const Fixed &target )
 	outstream << target.toFloat();
 
 	return ( outstream );
+}
+
+
+static Fixed&		min( Fixed& f1, Fixed& f2 )
+{
+	if (f1.getRawBits() < f2.getRawBits())
+		return ( f1 );
+	else 
+		return ( f2 );
+}
+
+static const Fixed&	min( const Fixed& f1, const Fixed& f2 )
+{
+	if (f1.getRawBits() < f2.getRawBits())
+		return ( f1 );
+	else
+		return ( f2 );
+}
+
+static Fixed&		max( Fixed& f1, Fixed& f2 )
+{
+	if (f1.getRawBits() > f2.getRawBits())
+		return ( f1 );
+	else
+		return ( f2 );
+}
+
+static const Fixed&	max( const Fixed& f1, const Fixed& f2 )
+{
+	if (f1.getRawBits() > f2.getRawBits())
+		return ( f1 );
+	else
+		return ( f2 );
 }

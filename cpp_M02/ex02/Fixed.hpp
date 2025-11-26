@@ -1,6 +1,9 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
-# include "externals.hpp"
+# include <iostream>
+# include <iomanip>
+# include <string>
+# include <cmath>
 
 
 
@@ -14,15 +17,35 @@ class	Fixed
 		~Fixed( void );
 		
 		void	operator=( const Fixed& source );
+		bool	operator>( const Fixed& source );
+		bool	operator<( const Fixed& source );
+		bool	operator>=( const Fixed& source );
+		bool	operator<=( const Fixed& source );
+		bool	operator==( const Fixed& source );
+		bool	operator!=( const Fixed& source );
+		int		operator+( const Fixed& source );
+		int		operator-( const Fixed& source );
+		int		operator*( const Fixed& source );
+		int		operator/( const Fixed& source );
+		int		operator++( void );
+		int		operator++( int );
+		int		operator--( void );
+		int		operator--( int );
 
-		int	getRawBits( void ) const;
+		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 		float	toFloat( void ) const;
-		int	toInt( void ) const;
+		int		toInt( void ) const;
+
+		static	Fixed&	min( Fixed& f1, Fixed& f2 );
+		static	Fixed&	min( const Fixed& f1, const Fixed& f2 );
+		static	Fixed&	max( Fixed& f1, Fixed& f2 );
+		static	Fixed&	max( const Fixed& f1, const Fixed& f2 );
 
 
 	private:
-		int			_value;
+		int	_value;
+
 		static const int	_fbits;
 };
 
