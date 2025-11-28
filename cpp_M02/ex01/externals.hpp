@@ -1,2 +1,0 @@
-#ifndef EXTERNALS_HPP
-# define EXTERNALS_HPP
