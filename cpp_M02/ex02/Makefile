@@ -1,4 +1,4 @@
-COMPILER = c++
+COMPILER = g++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
