@@ -5,8 +5,113 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nilamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 14:55:00 by nilamber          #+#    #+#             */
-/*   Updated: 2025/12/02 14:59:54 by nilamber         ###   ########.fr       */
+/*   Created: 2025/12/02 14:56:09 by nilamber          #+#    #+#             */
+/*   Updated: 2025/12/02 14:56:11 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ClapTrap.hpp"
+
+
+
+ClapTrap::ClapTrap( void )
+:	_name( "" ),
+	_hit_points( 10 ),
+	_energy_points( 10 ),
+	_attack_damages( 0 )
+{
+	std::cout << "Default Constructor called" << std::endl;
+	
+	return ;
+}
+
+ClapTrap::ClapTrap( const ClapTrap& source )
+{
+	std::cout << "Copy Constructor called" << std::endl;
+	*this = source;
+
+	return ;
+}
+
+ClapTrap::ClapTrap( const std::string name )
+:	_name( name ),
+	_hit_points( 10 ),
+	_energy_points( 10 ),
+	_attack_damages( 0 )
+{
+	std::cout << "Named Constructor called" << std::endl;
+
+	return ;
+}
+
+ClapTrap::~ClapTrap( void )
+{
+	std::cout << "Destructor called" << std::endl;
+
+	return ;
+}
+
+
+void	ClapTrap::operator=( const ClapTrap& source )
+{
+	std::cout << "Copy Assignment Operator Overload called" << std::endl;
+	_name = source._name;
+	_hit_points = source._hit_points;
+	_energy_points = source._energy_points;
+	_attack_damages = source._attack_damages;
+
+	return ;
+}
+
+
+std::string	ClapTrap::getName( void )	const
+{
+	std::cout << "Name Accessor called" << std::endl;
+	
+	return ( _name );
+}
+
+int		ClapTrap::getHP( void )	const
+{
+	std::cout << "Hit Points Accessor called" << std::endl;
+
+	return ( _hit_points );
+}
+
+int		ClapTrap::getEP( void )	const
+{
+	std::cout << "Energy Points Accessor called" << std::endl;
+	
+	return ( _energy_points );
+}
+
+int		ClapTrap::getAD( void )	const
+{
+	std::cout << "Attack Damages Accessor called" << std::endl;
+	
+	return ( _attack_damages );
+}
+
+
+void	ClapTrap::attack( const std::string& target )
+{
+	std::cout << "*" << _name << "* just took *" << target << "* brutaly by the colback and cracked their head open against the floor.\n Causing them to take " << _attack_damages << " damages. ( not cool :(... )\n*" << _name << "* loses 1 energy point and now has " << --_energy_points << " energy points.\n" << std::endl;
+
+	return ;
+}
+
+void	ClapTrap::takeDamage( unsigned int amount )
+{
+	std::cout << "*" << _name << "* is crumbled across the floor after having been savagely hit against it and took " << amount << " damage points.\n*" << _name << "* now has " << _hit_points - amount << " hit points.\n*old granny crying and screaming in the back* : \"PLEASE, SOMEONE PLEASE BRING THIS ROBOT A full AND real BOTTLE OF *Ciao Kombucha*, IT'S A LIFE OR DEATH TYPE OF SITUATION !!! ( yeah, it's not I know, since it's a robot and technically robot are not living nor dead, but who cares ? stop being a crybaby and take this bottle of *Ciao Kombucha*)\n*CONGRATULATIONS, you received ONE bottle of EMPTY and FALSE *Ciao Kombucha*.*\nDon't look at me like that :(, you really thought a CS student could affort a real one ?\n" << std::endl;
+	_hit_points -= amount;
+
+	return ;
+}
+
+void	ClapTrap::beRepaired( unsigned int amount )
+{
+	std::cout << "But everything's fine for *" << _name << "*, since across the street *The Legendary Squeezos* appears, a FULL and REAL bottle of *Ciao Kombucha* in his hand. After hearing all those poor people complaining ( as always... ), he couldn't possibily not intervene, and rushed straight from his *1955 Mercedes-Benz 300 SLR Uhlenhaut Coupe* to the poor *" << _name << "*, broke the top of the bottle against the floor, drank it all up, and kissed *" << _name << "*. They kiss for about *42 FULL and REAL seconds* straight.\n*" << _name << "* is repaired and gains back " << amount << " hit points and now has " << _hit_points + amount << "hit points. ( LOVE ALWAYS finds its way ;) )\n*" << _name << "* loses 1 energy point and now has " << --_energy_points << " energy points.\n" << std::endl;
+	_hit_points += amount;
+
+	return ;
+}

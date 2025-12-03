@@ -1,11 +1,11 @@
-COMPILER = c++
+COMPILER = g++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = ex01
+NAME = ex00
 
 SOURCES = main.cpp\
-	Fixed.cpp\
+	ClapTrap.cpp\
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

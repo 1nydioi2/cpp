@@ -20,12 +20,17 @@
 class	ClapTrap
 {
 	public:
-		Clap( void );
-		Clap( const Clap& source );
-		Clap( std::string Name );
-		~Clap( void );
+		ClapTrap( void );
+		ClapTrap( const ClapTrap& source );
+		ClapTrap( std::string Name );
+		~ClapTrap( void );
 
 		void	operator=( const ClapTrap& other );
+
+		std::string	getName( void ) const;
+		int		getHP( void ) const;
+		int		getEP( void ) const;
+		int		getAD( void ) const;
 
 		void	attack( const std::string& target );
 		void	takeDamage( unsigned int amount );
@@ -36,5 +41,5 @@ class	ClapTrap
 		std::string	_name;
 		int		_hit_points;
 		int		_energy_points;
-		int		_attack_damage;
-}
+		int		_attack_damages;
+};
