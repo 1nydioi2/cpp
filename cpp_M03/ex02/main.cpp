@@ -1,24 +1,25 @@
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 
 
 int	main( void )
 {
-	ScavTrap	faux_s( "Squeezie" );
-	ScavTrap	s;
+	FragTrap	faux_s( "Squeezie" );
+	FragTrap	s;
 	s = faux_s;
-	ScavTrap	faux_d( "Doigby" );
-	ScavTrap	d( faux_d );
+	FragTrap	faux_d( "Doigby" );
+	FragTrap	d( faux_d );
 	
 	s.attack( "Doiby" );
 	d.takeDamage( (unsigned int) s.getAD() );
+	s.attack( "Doiby" );
 	d.takeDamage( (unsigned int) s.getAD() );
+	s.attack( "Doiby" );
 	d.takeDamage( (unsigned int) s.getAD() );
+	s.attack( "Doiby" );
 	d.takeDamage( (unsigned int) s.getAD() );
-	d.takeDamage( (unsigned int) s.getAD() );
-	d.takeDamage( (unsigned int) s.getAD() );
-	d.guardGate();
+	d.highFivesGuys();
 	d.beRepaired( (unsigned int) s.getAD() );
 
 	return ( 0 );
