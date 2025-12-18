@@ -6,7 +6,7 @@
 /*   By: nilamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:56:09 by nilamber          #+#    #+#             */
-/*   Updated: 2025/12/16 18:24:33 by nilamber         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:47:53 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 
 ScavTrap::ScavTrap( void )
-:	_name( "" ),
-	_hit_points( 100 ),
-	_energy_points( 50 ),
-	_attack_damages( 20 )
 {
 	std::cout << "ScavTrap Default Constructor called" << std::endl;
+	setName( "" );
+	setHP( 100 );
+	setEP( 50 );
+	setAD( 20 );
 	
 	return ;
 }
@@ -35,11 +35,11 @@ ScavTrap::ScavTrap( const ScavTrap& source )
 }
 
 ScavTrap::ScavTrap( const std::string name )
-:	_name( name ),
-	_hit_points( 100 ),
-	_energy_points( 50 ),
-	_attack_damages( 20 )
 {
+	setName( name );
+	setHP( 100 );
+	setEP( 50 );
+	setAD( 20 );
 	std::cout << "ScavTrap Named Constructor called" << std::endl;
 
 	return ;
@@ -56,10 +56,10 @@ ScavTrap::~ScavTrap( void )
 void	ScavTrap::operator=( const ScavTrap& source )
 {
 	std::cout << "ScavTrap Copy Assignment Operator Overload called" << std::endl;
-	_name = source._name;
-	_hit_points = source._hit_points;
-	_energy_points = source._energy_points;
-	_attack_damages = source._attack_damages;
+	setName( source.getName() );
+	setHP( source.getHP() );
+	setEP( source.getEP() );
+	setAD( source.getAD() );
 
 	return ;
 }
@@ -67,14 +67,24 @@ void	ScavTrap::operator=( const ScavTrap& source )
 
 void	ScavTrap::attack( const std::string& target )
 {
-	std::cout << "*" << _name << "* just kissed *" << target << "* on its right cheek.\n Causing it to take " << _attack_damages << " damages. ( don't play with feelings that's mean :(...)\n*" << _name << "* loses 1 energy point and now has " << --_energy_points << " energy points.\n" << std::endl;
+	if (getHP() > 0 && getEP() > 0)
+	{
+	 	std::cout << "*" << getName() << "* just kissed *" << target << "* on its right cheek.\n Causing it to take " << getAD() << " damages. ( don't play with feelings that's mean :(...)\n*" << getName() << "* loses 1 energy point and now has " << (getEP() - 1) << " energy points.\n" << std::endl;
+		setEP(getEP() - 1);
+	}    
+	else
+		std::cout << "*" << getName() << "* is in no condition to attack." << std::endl;
+
 
 	return ;
 }
 
 void	ScavTrap::guardGate( void )
 {
-	std::cout << "*" << _name << "* is now in Gate keeper mode to protect its feelings." << std::endl;
+	if (getHP() > 0 && getEP() > 0)
+		std::cout << "*" << getName() << "* is now in Gate keeper mode to protect its feelings." << std::endl;
+	else
+		std::cout << "*" << getName() << "* is in no condition to activate Gate keeper mode." << std::endl;
 	
 	return ;
 }
