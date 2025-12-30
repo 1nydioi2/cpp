@@ -20,7 +20,7 @@ int	main( void )
 	std::cout << "3" << std::endl;
 	d.takeDamage( s.getAD() );
 	std::cout << "4" << std::endl;
-	d.takeDamage( s.getAD() );
+	d.takeDamage( s.getAD() + 10 );
 	std::cout << "5" << std::endl;
 	d.takeDamage( s.getAD() );
 	std::cout << "6" << std::endl;
