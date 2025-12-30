@@ -16,6 +16,7 @@
 
 
 ScavTrap::ScavTrap( void )
+: ClapTrap()
 {
 	std::cout << "ScavTrap Default Constructor called" << std::endl;
 	setName( "" );
@@ -27,6 +28,7 @@ ScavTrap::ScavTrap( void )
 }
 
 ScavTrap::ScavTrap( const ScavTrap& source )
+: ClapTrap()
 {
 	std::cout << "ScavTrap Copy Constructor called" << std::endl;
 	*this = source;
@@ -35,6 +37,7 @@ ScavTrap::ScavTrap( const ScavTrap& source )
 }
 
 ScavTrap::ScavTrap( const std::string name )
+: ClapTrap()
 {
 	setName( name );
 	setHP( 100 );
@@ -69,8 +72,8 @@ void	ScavTrap::attack( const std::string& target )
 {
 	if (getHP() > 0 && getEP() > 0)
 	{
-	 	std::cout << "*" << getName() << "* just kissed *" << target << "* on its right cheek.\n Causing it to take " << getAD() << " damages. ( don't play with feelings that's mean :(...)\n*" << getName() << "* loses 1 energy point and now has " << (getEP() - 1) << " energy points.\n" << std::endl;
-		setEP(getEP() - 1);
+		setEP( getEP() - 1 );
+	 	std::cout << "*" << getName() << "* just kissed *" << target << "* on its right cheek.\n Causing it to take " << getAD() << " damages. ( don't play with feelings that's mean :(...)\n*" << getName() << "* loses 1 energy point and now has " << getEP() << " energy points.\n" << std::endl;
 	}    
 	else
 		std::cout << "*" << getName() << "* is in no condition to attack." << std::endl;

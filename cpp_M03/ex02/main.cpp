@@ -12,15 +12,12 @@ int	main( void )
 	FragTrap	d( faux_d );
 	
 	s.attack( "Doiby" );
-	d.takeDamage( (unsigned int) s.getAD() );
-	s.attack( "Doiby" );
-	d.takeDamage( (unsigned int) s.getAD() );
-	s.attack( "Doiby" );
-	d.takeDamage( (unsigned int) s.getAD() );
-	s.attack( "Doiby" );
-	d.takeDamage( (unsigned int) s.getAD() );
+	d.takeDamage( s.getAD() );
+	d.takeDamage( s.getAD() );
+	d.takeDamage( s.getAD() );
+	d.takeDamage( s.getAD() );
 	d.highFivesGuys();
-	d.beRepaired( (unsigned int) s.getAD() );
+	d.beRepaired( s.getAD() );
 
 	return ( 0 );
 }

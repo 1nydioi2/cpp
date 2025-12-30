@@ -12,14 +12,20 @@ int	main( void )
 	ScavTrap	d( faux_d );
 	
 	s.attack( "Doiby" );
-	d.takeDamage( (unsigned int) s.getAD() );
-	d.takeDamage( (unsigned int) s.getAD() );
-	d.takeDamage( (unsigned int) s.getAD() );
-	d.takeDamage( (unsigned int) s.getAD() );
-	d.takeDamage( (unsigned int) s.getAD() );
-	d.takeDamage( (unsigned int) s.getAD() );
+	d.takeDamage( s.getAD() );
+	std::cout << "1" << std::endl;
+	d.takeDamage( s.getAD() );
+	std::cout << "2" << std::endl;
+	d.takeDamage( s.getAD() );
+	std::cout << "3" << std::endl;
+	d.takeDamage( s.getAD() );
+	std::cout << "4" << std::endl;
+	d.takeDamage( s.getAD() );
+	std::cout << "5" << std::endl;
+	d.takeDamage( s.getAD() );
+	std::cout << "6" << std::endl;
 	d.guardGate();
-	d.beRepaired( (unsigned int) s.getAD() );
+	d.beRepaired( s.getAD() );
 
 	return ( 0 );
 }

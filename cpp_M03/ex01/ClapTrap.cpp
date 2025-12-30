@@ -103,7 +103,10 @@ void	ClapTrap::setName( std::string name )
 void		ClapTrap::setHP( int amount )
 {
 	std::cout << "Hit Points Initializer called" << std::endl;
-	_hit_points = amount;
+	if ( amount < 0)
+		_hit_points = 0;
+	else
+		_hit_points = amount;
 
 	return ;
 }
@@ -111,7 +114,10 @@ void		ClapTrap::setHP( int amount )
 void		ClapTrap::setEP( int amount )
 {
 	std::cout << "Energy Points Initializer called" << std::endl;
-	_energy_points = amount;
+	if ( amount < 0)
+		_energy_points = 0;
+	else
+		_energy_points = amount;
 	
 	return ;
 }
@@ -119,7 +125,10 @@ void		ClapTrap::setEP( int amount )
 void		ClapTrap::setAD( int amount )
 {
 	std::cout << "Attack Damages Initializer called" << std::endl;
-	_attack_damages = amount;
+	if ( amount < 0)
+		_attack_damages = 0;
+	else
+		_attack_damages = amount;
 	
 	return ;
 }
@@ -127,34 +136,43 @@ void		ClapTrap::setAD( int amount )
 
 void	ClapTrap::attack( const std::string& target )
 {
-	if (_energy_points > 0 && _hit_points > 0)
-		std::cout << "*" << _name << "* just took *" << target << "* brutaly by the colback and cracked their head open against the floor.\n Causing them to take " << _attack_damages << " damages. ( not cool :(... )\n*" << _name << "* loses 1 energy point and now has " << --_energy_points << " energy points.\n" << std::endl;
+	if (getEP() > 0 && getHP() > 0)
+	{
+		setEP( getEP() - 1 );
+		std::cout << "*" << getName() << "* just took *" << target << "* brutaly by the colback and cracked their head open against the floor.\n Causing them to take " << getAD() << " damages. ( not cool :(... )\n*" << getName() << "* loses 1 energy point and now has " << getEP() << " energy points.\n" << std::endl;
+	}
 	else
-		std::cout << "*" << _name << "* is in no contidition to attack." << std::endl;
+		std::cout << "*" << getName() << "* is in no contidition to attack." << std::endl;
 
 	return ;
 }
 
 void	ClapTrap::takeDamage( unsigned int amount )
 {
-	if (_hit_points > 0)
-		std::cout << "*" << _name << "* is crumbled across the floor after having been savagely hit against it and took " << amount << " damage points.\n*" << _name << "* now has " << _hit_points - amount << " hit points.\n*old granny crying and screaming in the back* : \"PLEASE, SOMEONE PLEASE BRING THIS ROBOT A full AND real BOTTLE OF *Ciao Kombucha*, IT'S A LIFE OR DEATH TYPE OF SITUATION !!! ( yeah, it's not I know, since it's a robot and technically robot are not living nor dead, but who cares ? stop being a crybaby and take this bottle of *Ciao Kombucha*)\n*CONGRATULATIONS, you received ONE bottle of EMPTY and FALSE *Ciao Kombucha*.*\nDon't look at me like that :(, you really thought a CS student could affort a real one ?\n" << std::endl;
+	if ( getHP() > 0 )
+	{
+		setHP( getHP() - amount );
+		std::cout << "*" << getName() << "* is crumbled across the floor after having been savagely hit against it and took " << amount << " damage points.\n*" << getName() << "* now has " << getHP() << " hit points.\n*old granny crying and screaming in the back* : \"PLEASE, SOMEONE PLEASE BRING THIS ROBOT A full AND real BOTTLE OF *Ciao Kombucha*, IT'S A LIFE OR DEATH TYPE OF SITUATION !!! ( yeah, it's not I know, since it's a robot and technically robot are not living nor dead, but who cares ? stop being a crybaby and take this bottle of *Ciao Kombucha*)\n*CONGRATULATIONS, you received ONE bottle of EMPTY and FALSE *Ciao Kombucha*.*\nDon't look at me like that :(, you really thought a CS student could affort a real one ?\n" << std::endl;
+	}	
 	else	
-		std::cout << "*" << _name << "* is already  destroyed." << std::endl;
-	_hit_points -= amount;
+		std::cout << "*" << getName() << "* is already  destroyed." << std::endl;
 
 	return ;
 }
 
 void	ClapTrap::beRepaired( unsigned int amount )
 {
-	if (_energy_points > 0 && _hit_points > 0)
+	if ( getEP() > 0 && getHP() > 0 )
 	{
-		std::cout << "But everything's fine for *" << _name << "*, since across the street *The Legendary Squeezos* appears, a FULL and REAL bottle of *Ciao Kombucha* in his hand. After hearing all those poor people complaining ( as always... ), he couldn't possibily not intervene, and rushed straight from his *1955 Mercedes-Benz 300 SLR Uhlenhaut Coupe* to the poor *" << _name << "*, broke the top of the bottle against the floor, drank it all up, and kissed *" << _name << "*. They kiss for about *42 FULL and REAL seconds* straight.\n*" << _name << "* is repaired and gains back " << amount << " hit points and now has " << _hit_points + amount << " hit points. ( LOVE ALWAYS finds its way ;) )\n*" << _name << "* loses 1 energy point and now has " << --_energy_points << " energy points.\n" << std::endl;
-		_hit_points += amount;
+		if ( (int)( getHP() + amount ) > 2147483647 ) 
+			setHP( 2147483647 );
+		else
+			setHP( getHP() + amount );
+		setEP( getEP() - 1 );
+		std::cout << "But everything's fine for *" << getName() << "*, since across the street *The Legendary Squeezos* appears, a FULL and REAL bottle of *Ciao Kombucha* in his hand. After hearing all those poor people complaining ( as always... ), he couldn't possibily not intervene, and rushed straight from his *1955 Mercedes-Benz 300 SLR Uhlenhaut Coupe* to the poor *" << getName() << "*, broke the top of the bottle against the floor, drank it all up, and kissed *" << getName() << "*. They kiss for about *42 FULL and REAL seconds* straight.\n*" << getName() << "* is repaired and gains back " << amount << " hit points and now has " << getHP() << " hit points. ( LOVE ALWAYS finds its way ;) )\n*" << getName() << "* loses 1 energy point and now has " << getEP() << " energy points.\n" << std::endl;
 	}
 	else
-		std::cout << "*" << _name << "* is in no contidition to be repaired." << std::endl;
+		std::cout << "*" << getName() << "* is in no contidition to be repaired." << std::endl;
 
 	return ;
 }

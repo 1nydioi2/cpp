@@ -16,6 +16,7 @@
 
 
 ScavTrap::ScavTrap( void )
+: ClapTrap()
 {
 	std::cout << "ScavTrap Default Constructor called" << std::endl;
 	setName( "" );
@@ -27,6 +28,7 @@ ScavTrap::ScavTrap( void )
 }
 
 ScavTrap::ScavTrap( const ScavTrap& source )
+: ClapTrap()
 {
 	std::cout << "ScavTrap Copy Constructor called" << std::endl;
 	*this = source;
@@ -35,6 +37,7 @@ ScavTrap::ScavTrap( const ScavTrap& source )
 }
 
 ScavTrap::ScavTrap( const std::string name )
+: ClapTrap()
 {
 	setName( name );
 	setHP( 100 );

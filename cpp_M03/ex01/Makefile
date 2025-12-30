@@ -8,13 +8,16 @@ SOURCES = main.cpp\
 	ClapTrap.cpp\
 	ScavTrap.cpp\
 
+HEADER_FILES = ClapTrap.hpp\
+	ScavTrap.hpp\
+
 OBJECTS = $(SOURCES:.cpp=.o)
 
 CPP_V = -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJECTS) $(HEADER_FILES)
 	$(COMPILER) $(CPP_V) $(COMPILATION_FLAGS) $(OBJECTS) -o $(NAME)
 
 %.o: %.cpp

@@ -7,7 +7,11 @@ NAME = ex02
 SOURCES = main.cpp\
 	ClapTrap.cpp\
 	ScavTrap.cpp\
-	FragTrap.cpp\
+	FragTrap.cpp
+
+HEADER_FILES = ClapTrap.hpp\
+	ScavTrap.hpp\
+	FragTrap.hpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
@@ -15,7 +19,7 @@ CPP_V = -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJECTS) $(HEADER_FILES)
 	$(COMPILER) $(CPP_V) $(COMPILATION_FLAGS) $(OBJECTS) -o $(NAME)
 
 %.o: %.cpp

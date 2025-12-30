@@ -16,6 +16,7 @@
 
 
 FragTrap::FragTrap( void )
+: ClapTrap()
 {
 	std::cout << "FragTrap Default Constructor called" << std::endl;
 	setName( "" );
@@ -27,6 +28,7 @@ FragTrap::FragTrap( void )
 }
 
 FragTrap::FragTrap( const FragTrap& source )
+: ClapTrap()
 {
 	std::cout << "FragTrap Copy Constructor called" << std::endl;
 	*this = source;
@@ -35,6 +37,7 @@ FragTrap::FragTrap( const FragTrap& source )
 }
 
 FragTrap::FragTrap( const std::string name )
+: ClapTrap()
 {
 	setName( name );
 	setHP( 100 );
