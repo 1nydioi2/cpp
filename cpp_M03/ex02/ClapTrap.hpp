@@ -6,7 +6,7 @@
 /*   By: nilamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:55:03 by nilamber          #+#    #+#             */
-/*   Updated: 2025/12/18 13:30:44 by nilamber         ###   ########.fr       */
+/*   Updated: 2026/01/02 16:38:17 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,14 @@ class	ClapTrap
 
 		void	operator=( const ClapTrap& other );
 
-		std::string	getName( void ) const;
-		int		getHP( void ) const;
-		int		getEP( void ) const;
-		int		getAD( void ) const;
-		void	setName( std::string name );
-		void	setHP( int amount );
-		void	setEP( int amount );
-		void	setAD( int amount );
-
 		void	attack( const std::string& target );
 		void	takeDamage( unsigned int amount );
 		void	beRepaired( unsigned int amount );
 
 
-	private:
+	protected:
 		std::string	_name;
-		int		_hit_points;
-		int		_energy_points;
-		int		_attack_damages;
+		int			_hit_points;
+		int			_energy_points;
+		int			_attack_damages;
 };

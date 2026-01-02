@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nilamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 14:56:09 by nilamber          #+#    #+#             */
-/*   Updated: 2025/12/18 14:02:52 by nilamber         ###   ########.fr       */
+/*   Created: 3025/12/02 14:56:09 by nilamber          #+#    #+#             */
+/*   Updated: 2026/01/02 17:01:17 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ FragTrap::FragTrap( void )
 : ClapTrap()
 {
 	std::cout << "FragTrap Default Constructor called" << std::endl;
-	setName( "" );
-	setHP( 100 );
-	setEP( 100 );
-	setAD( 30 );
+	_name = "";
+	_hit_points = 100;
+	_energy_points = 100;
+	_attack_damages = 30;
 	
 	return ;
 }
@@ -39,10 +39,10 @@ FragTrap::FragTrap( const FragTrap& source )
 FragTrap::FragTrap( const std::string name )
 : ClapTrap()
 {
-	setName( name );
-	setHP( 100 );
-	setEP( 100 );
-	setAD( 30 );
+	_name = name;
+	_hit_points = 100;
+	_energy_points = 100;
+	_attack_damages = 30;
 	std::cout << "FragTrap Named Constructor called" << std::endl;
 
 	return ;
@@ -59,21 +59,18 @@ FragTrap::~FragTrap( void )
 void	FragTrap::operator=( const FragTrap& source )
 {
 	std::cout << "FragTrap Copy Assignment Operator Overload called" << std::endl;
-	setName( source.getName() );
-	setHP( source.getHP() );
-	setEP( source.getEP() );
-	setAD( source.getAD() );
+	_name = source._name;
+	_hit_points = source._hit_points;
+	_energy_points = source._energy_points;
+	_attack_damages = source._attack_damages;
 
 	return ;
 }
 
-
 void	FragTrap::highFivesGuys( void )
 {
-	if (getHP() > 0 && getEP() > 0)
-		std::cout << "*" << getName() << "* asks everyone if it is possible to top fighting since it would win, and instead kiss." << std::endl;
+	if (_hit_points > 0 && _energy_points > 0)
+		std::cout << "*" << _name << "* asks everyone if it is possible to top fighting since it would win, and instead kiss." << std::endl;
 	else
-		std::cout << "*" << getName() << "* 's face is in no condition to ask for kisses." << std::endl;
-	
-	return ;
+		std::cout << "*" << _name << "* 's face is in no condition to ask for kisses." << std::endl;
 }

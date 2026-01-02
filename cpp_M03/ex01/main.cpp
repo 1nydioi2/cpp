@@ -11,21 +11,19 @@ int	main( void )
 	ScavTrap	faux_d( "Doigby" );
 	ScavTrap	d( faux_d );
 	
-	s.attack( "Doiby" );
-	d.takeDamage( s.getAD() );
-	std::cout << "1" << std::endl;
-	d.takeDamage( s.getAD() );
-	std::cout << "2" << std::endl;
-	d.takeDamage( s.getAD() );
-	std::cout << "3" << std::endl;
-	d.takeDamage( s.getAD() );
-	std::cout << "4" << std::endl;
-	d.takeDamage( s.getAD() + 10 );
-	std::cout << "5" << std::endl;
-	d.takeDamage( s.getAD() );
-	std::cout << "6" << std::endl;
+	std::cout << std::endl;
+	
+	s.attack( "Doigby" );
+	d.takeDamage( 20 );
+	d.takeDamage( 20 );
+	d.takeDamage( 20 );
+	d.takeDamage( 20 );
+	d.takeDamage( 20 + 10 );
+	d.takeDamage( 20 );
 	d.guardGate();
-	d.beRepaired( s.getAD() );
+	d.beRepaired( 20 );
+	
+	std::cout << std::endl;
 
 	return ( 0 );
 }

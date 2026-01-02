@@ -11,8 +11,8 @@ int	main( void )
 	ClapTrap	g( faux_g );
 
 	m.attack( "Gotaga" );
-	g.takeDamage( m.getAD() );
-	g.beRepaired( m.getAD() );
+	g.takeDamage( 5 );
+	g.beRepaired( 10 );
 
 	return ( 0 );
 }
