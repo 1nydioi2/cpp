@@ -6,7 +6,7 @@
 /*   By: nilamber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 3025/12/02 14:56:09 by nilamber          #+#    #+#             */
-/*   Updated: 2026/01/02 17:01:17 by nilamber         ###   ########.fr       */
+/*   Updated: 2026/01/02 17:23:30 by nilamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ FragTrap::~FragTrap( void )
 
 void	FragTrap::operator=( const FragTrap& source )
 {
-	std::cout << "FragTrap Copy Assignment Operator Overload called" << std::endl;
 	_name = source._name;
 	_hit_points = source._hit_points;
 	_energy_points = source._energy_points;
