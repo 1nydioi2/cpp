@@ -7,14 +7,13 @@
 
 Brain::Brain( void )
 {
-	std::string s;
 	std::stringstream out;
 	std::cout << "Brain Default Construtor called." << std::endl;
 	for (int i = 0; i < 100; i++)
 	{
 		out << i + 1;
-		s = out.str();
-		this->ideas[i] = s;
+		this->ideas[i] = out.str();
+		out.str("");
 	}
 	return ;
 }
@@ -37,6 +36,8 @@ Brain::~Brain( void )
 
 void	Brain::operator=( const Brain& other )
 {
+	if ( this == &other )
+		return ;
 	for ( int i = 0; i < 100; i++ )
 		this->ideas[i] = other.ideas[i];
 

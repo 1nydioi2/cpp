@@ -18,8 +18,6 @@ Cat::Cat( const Cat& source )
 :	Animal()
 {
 	std::cout << "Cat Copy Construtor called." << std::endl;
-	if ( &source == this )
-		return ;
 	*this = source;
 
 	return ;
@@ -36,6 +34,8 @@ Cat::~Cat( void )
 
 void	Cat::operator=( const Cat& other )
 {
+	if ( this == &other )
+		return ;
 	this->type = other.type;
 	_brain = new Brain( *other._brain );
 

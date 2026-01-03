@@ -8,7 +8,6 @@
 
 
 
-
 int main()
 {
 	int	i = 10;
@@ -37,17 +36,16 @@ int main()
 		happy_house[j]->makeSound();
 		std::cout << "Idea = " << static_cast<Cat*>(happy_house[j])->getIdea( j ) << std::endl;
 		
-		std::cout << cp_happy_house[j]->getType() << "\t";
-		cp_happy_house[j]->makeSound();
-		
 		delete happy_house[j];
 		
-		std::cout << "cp Idea = " << static_cast<Cat*>(happy_house[j])->getIdea( j ) << std::endl;
+		std::cout << cp_happy_house[j]->getType() << "\t";
+		cp_happy_house[j]->makeSound();
+		std::cout << "cp Idea = " << static_cast<Cat*>(cp_happy_house[j])->getIdea( j ) << std::endl;
 		
 		delete cp_happy_house[j];
+
+		std::cout << std::endl;
 	}
-	
-	std::cout << std::endl;
 	
 	return 0;
 }
