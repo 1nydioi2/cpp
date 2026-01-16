@@ -15,6 +15,18 @@ class	Bureaucrat
 		void	operator=( const Bureaucrat& other );
 		void	operator<<( const Bureaucrat& other );
 
+		class	GradeTooLowException : public std::exception
+		{
+			public:
+				const char	*what( void ) const throw( void );
+		};
+
+		class	GradetooHighException : public std::exception
+		{
+			public:
+				const char	*what( void ) const throw( void );
+		};
+		
 		std::string	getName( void ) const;
 		int		getGrade( void ) const;
 		void		raiseGrade( int x );

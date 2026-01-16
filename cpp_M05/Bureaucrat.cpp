@@ -16,19 +16,17 @@ Bureaucrat::Bureaucrat( void )
 Bureaucrat::Bureaucrat( std::string name, int grade )
 :	_name( name )
 {
+	std::cout << "Bureaucrat Complete Construtor called." << std::endl;
 	try
 	{
-		if ( grade < 1 )
-			throw ( Bureaucrat::GradeTooHighException );
-		else if ( grade > 150 )
+		if ( grade > 150 )
 			throw ( Bureaucrat::GradeTooLowException );
+		else if ( grade < 1 )
+			throw ( Bureaucrat::GradeTooHighException );
 		_grade = grade;
-		std::cout << "Bureaucrat Complete Construtor called." << std::endl;
 	}
-	catch
-	{
-		
-	}
+	catch ( std::exception & e )
+		std::cout << _name << e.what() << std::endl;
 
 	return ;
 }
@@ -66,6 +64,16 @@ std::ostream&	operator<<( std::ostream& outstream, const Bureaucrat &target )
 	return ( outstream );
 }
 
+const char	*Bureaucrat::GradeTooLowException::what( void ) const throw( void )
+{
+	return ("'s grade is too low. ( 150 -> 1 )");
+}
+
+const char	*Bureaucrat::GradeTooHighException::what( void ) const throw( void )
+{
+	return ("'s grade is too high. ( 150 -> 1 )");
+}
+
 
 std::string	Bureaucrat::getName( void ) const
 {
@@ -77,12 +85,30 @@ int	Bureaucrat::getGrade( void ) const
 	return ( this->_grade );
 }
 
-void	raiseGrade( int x )
+void	Bureaucrat::raiseGrade( int x )
 {
+	try
+	{
+		if ( _grade - x < 1 )
+			throw ( Bureaucrat::GradeTooHighException );
+		_grade -= x;
+	}
+	catch ( std::exception & e )
+		std::cout << _name << e.what() << std::endl;
 
+	return ;
 }
 
 void	lowerGrade( int x )
 {
+	try
+	{
+		if ( _grade + x > 150 )
+			throw ( Bureaucrat::GradeTooLowException );
+		_grade += x;
+	}
+	catch ( std::exception & e )
+		std::cout << _name << e.what() << std::endl;
 
+	return ;
 }
