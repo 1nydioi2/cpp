@@ -6,7 +6,7 @@
 
 Bureaucrat::Bureaucrat( void )
 :	_name( "Nobody" ),
-	_grade( 150 )
+	_grade( 0 )
 {
 	std::cout << "Bureaucrat Default Construtor called." << std::endl;
 
@@ -28,6 +28,7 @@ Bureaucrat::Bureaucrat( std::string name, int grade )
 	catch ( std::exception & e )
 	{
 		std::cout << _name << e.what() << std::endl;
+		_grade = 0;
 	}
 
 	return ;
@@ -85,7 +86,7 @@ void	Bureaucrat::raiseGrade( int x )
 {
 	try
 	{
-		if ( _grade - x < 1 )
+		if ( _grade - x < 1 || _grade == 0 )
 			throw ( Bureaucrat::GradeTooHighException() );
 		_grade -= x;
 	}
@@ -101,7 +102,7 @@ void	Bureaucrat::lowerGrade( int x )
 {
 	try
 	{
-		if ( _grade + x > 150 )
+		if ( _grade + x > 150 || _grade == 0 )
 			throw ( Bureaucrat::GradeTooLowException() );
 		_grade += x;
 	}

@@ -2,36 +2,52 @@
 #include "Bureaucrat.hpp"
 
 
+void	test( Bureaucrat &joe )
+{
+	std::cout << joe << std::endl;
+	
+	std::cout << "lowerGrade( 1 ) : ";
+	joe.lowerGrade( 1 );
+	std::cout << std::endl;
+	
+	std::cout << "raiseGrade( 2 ) : ";
+	joe.raiseGrade( 2 );
+	std::cout << std::endl;
+	
+	std::cout << joe << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	return ;
+}
+
 
 int main()
 {
+
 	Bureaucrat joseph( "Joseph", 150 );
+	test( joseph );
+
 	Bureaucrat laurene( "Laurene", 1 );
-	Bureaucrat malo( "Malo", 0 );
-	std::cout << malo << std::endl;
-	Bureaucrat mael( "Mael", -1 );
-	std::cout << mael << std::endl;
-	Bureaucrat myl( "Myl", 151 );
-	std::cout << myl << std::endl;
+	test( laurene );
+
 	Bureaucrat ano;
+	test( ano );
+
 
 	std::cout << std::endl;
 
-	std::cout << joseph << std::endl;
-	joseph.lowerGrade( 1 );
-	joseph.raiseGrade( 2 );
-	std::cout << joseph << std::endl;
 
-	std::cout << laurene << std::endl;
-	laurene.raiseGrade( 1 );
-	laurene.lowerGrade( 2 );
-	std::cout << laurene << std::endl;
+	Bureaucrat malo( "Malo", 0 );
+	test( malo );
 
-	std::cout << ano << std::endl;
-	ano.raiseGrade( 1 );
-	ano.lowerGrade( 2 );
-	std::cout << ano << std::endl;
+	Bureaucrat mael( "Mael", -1 );
+	test( mael );
 	
-	std::cout << std::endl;
+	Bureaucrat myl( "Myl", 151 );
+	test( myl );
+
+
 	return 0;
 }
