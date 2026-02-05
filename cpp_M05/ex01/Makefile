@@ -2,20 +2,14 @@ COMPILER = c++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = ex00
+NAME = ex01
 
 SOURCES = main.cpp\
-		Animal.cpp\
-		Cat.cpp\
-		Dog.cpp\
-		WrongAnimal.cpp\
-		WrongCat.cpp
+		Bureaucrat.cpp\
+		Form.cpp
 
-HEADER_FILES = Animal.hpp\
-		Cat.hpp\
-		Dog.hpp\
-		WrongAnimal.hpp\
-		WrongCat.hpp
+HEADER_FILES = Bureaucrat.cpp\
+		Form.hpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
