@@ -4,6 +4,8 @@
 #include "Form.hpp"
 
 
+class	Form;
+
 class	Bureaucrat
 {
 	public:
@@ -31,7 +33,7 @@ class	Bureaucrat
 		void		raiseGrade( int x );
 		void		lowerGrade( int x );
 
-		bool	signForm( Form &f );
+		void	signForm( Form &f );
 
 
 	private:

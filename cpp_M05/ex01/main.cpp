@@ -1,8 +1,9 @@
 #include <iostream>
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 
-void	test( Bureaucrat &joe )
+void	testB( Bureaucrat &joe )
 {
 	std::cout << joe << std::endl;
 	
@@ -22,31 +23,47 @@ void	test( Bureaucrat &joe )
 	return ;
 }
 
+void	testF( Form &f, Bureaucrat &b )
+{
+	std::cout << f << std::endl;
+
+	b.signForm( f );
+	
+	std::cout << std::endl;
+
+	return ;
+}
+
 
 int main()
 {
 
-	Bureaucrat joseph( "Joseph", 150 );
-	test( joseph );
+	Bureaucrat joseph( "Joseph", 24 );
+	testB( joseph );
 
-	Bureaucrat laurene( "Laurene", 1 );
-	test( laurene );
+	Bureaucrat laurene( "Laurene", 42 );
+	testB( laurene );
 
 	Bureaucrat ano;
-	test( ano );
+	testB( ano );
 
-
-	std::cout << std::endl;
-
-
-	Bureaucrat malo( "Malo", 0 );
-	test( malo );
-
-	Bureaucrat mael( "Mael", -1 );
-	test( mael );
+	Form	draw( "draw", 24, 42 );
+	testF( draw, joseph );
+	testF( draw, laurene );
+	testF( draw, ano );
 	
-	Bureaucrat myl( "Myl", 151 );
-	test( myl );
+	Form	tap( "tap", 148, 2 );
+	testF( tap, joseph );
+	testF( tap, laurene );
+	testF( tap, ano );
+	
+	Form	blank;
+	testF( blank, joseph );
+	testF( blank, laurene );
+	testF( blank, ano );
+
+	Form	wrong( "wrong", 0, 151 );
+	testF( wrong, ano );
 
 
 	return 0;

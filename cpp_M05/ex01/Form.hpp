@@ -4,6 +4,9 @@
 #include "Bureaucrat.hpp"
 
 
+
+class	Bureaucrat;
+
 class	Form
 {
 	public:
@@ -31,7 +34,7 @@ class	Form
 		int			getSGrade( void ) const;
 		bool		getSign( void ) const;
 
-		void		beSigned( const Bureaucrat &b );
+		bool		beSigned( const Bureaucrat &b );
 
 
 	private:

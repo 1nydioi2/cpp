@@ -115,9 +115,9 @@ void	Bureaucrat::lowerGrade( int x )
 }
 
 
-void	signForm( Form &f )
+void	Bureaucrat::signForm( Form &f )
 {
-	if ( f.beSigned( this ) )
+	if ( f.beSigned( (*this) ) )
 		std::cout << getName() << " succesfully signed the " << f.getName() << "form." << std::endl;
 	else
 		std::cout << getName() << ", lacking the required grade, couldn't sign the " << f.getName() << "form." << std::endl;
