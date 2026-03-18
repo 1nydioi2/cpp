@@ -47,20 +47,20 @@ int main()
 	Bureaucrat ano;
 	testB( ano );
 
-	Form	draw( "draw", 24, 42 );
-	testF( draw, joseph );
-	testF( draw, laurene );
-	testF( draw, ano );
+	Form	draw1( "draw", 24, 42 ), draw2( "draw", 24, 42 ), draw3( "draw", 24, 42 );
+	testF( draw1, joseph );
+	testF( draw2, laurene );
+	testF( draw3, ano );
 	
-	Form	tap( "tap", 148, 2 );
-	testF( tap, joseph );
-	testF( tap, laurene );
-	testF( tap, ano );
+	Form	tap1( "tap", 42, 24 ), tap2( "tap", 42, 24 ), tap3( "tap", 42, 24 );
+	testF( tap1, joseph );
+	testF( tap2, laurene );
+	testF( tap3, ano );
 	
-	Form	blank;
-	testF( blank, joseph );
-	testF( blank, laurene );
-	testF( blank, ano );
+	Form	blank1, blank2, blank3;
+	testF( blank1, joseph );
+	testF( blank2, laurene );
+	testF( blank3, ano );
 
 	Form	wrong( "wrong", 0, 151 );
 	testF( wrong, ano );

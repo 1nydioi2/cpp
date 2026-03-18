@@ -8,8 +8,8 @@
 Form::Form( void )
 :	_name( "Blank" ),
 	_sign( false ),
-	_gradex( 150 ),
-	_grades( 150 ),
+	_xgrade( 150 ),
+	_sgrade( 150 )
 {
 	std::cout << "Form Default Construtor called." << std::endl;
 
@@ -17,8 +17,10 @@ Form::Form( void )
 }
 
 Form::Form( std::string name, int gradex, int grades )
-:	_name( name )
+:	_name( name ),
 	_sign( false ),
+	_xgrade( gradex ),
+	_sgrade( grades )
 {
 	std::cout << "Form Complete Construtor called." << std::endl;
 	try
@@ -27,23 +29,22 @@ Form::Form( std::string name, int gradex, int grades )
 			throw ( Form::GradeTooLowException() );
 		else if ( gradex < 1 || grades < 1 )
 			throw ( Form::GradeTooHighException() );
-		_gradex = gradex;
-		_grades = grades;
 	}
 	catch ( std::exception & e )
 	{
 		std::cout << _name << e.what() << std::endl;
-		_gradex = 150;
-		_grades = 150;
 	}
 
 	return ;
 }
 
 Form::Form( const Form& source )
+:	_name( source._name ),
+	_sign( source._sign ),
+	_xgrade( source._xgrade ),
+	_sgrade( source._sgrade )
 {
 	std::cout << "Form Copy Construtor called." << std::endl;
-	*this = source;
 
 	return ;
 }
@@ -68,13 +69,13 @@ void	Form::operator=( const Form& other )
 
 const char	*Form::GradeTooLowException::what( void ) const throw()
 {
-	return ( "'s grade is too low. ( 150 -> 1 )" );
+	return ( "'s grade is too low." );
 }
 
 
 const char	*Form::GradeTooHighException::what( void ) const throw()
 {
-	return ( "'s grade is too high. ( 150 -> 1 )" );
+	return ( "'s grade is too high." );
 }
 
 
@@ -88,14 +89,14 @@ bool	Form::getSign( void ) const
 	return ( this->_sign );
 }
 
-int	Form::getGradeX( void ) const
+int	Form::getXGrade( void ) const
 {
-	return ( this->_gradex );
+	return ( this->_xgrade );
 }
 
-int	Form::getGradeS( void ) const
+int	Form::getSGrade( void ) const
 {
-	return ( this->_grades );
+	return ( this->_sgrade );
 }
 
 
@@ -103,13 +104,13 @@ bool	Form::beSigned( const Bureaucrat &b )
 {
 	try
 	{
-		if ( b.getGrade() > _grades && b.getGrade() == 0 )
+		if ( b.getGrade() > _sgrade )
 			throw ( Form::GradeTooLowException() );
 		_sign = true;
 	}
 	catch ( std::exception & e )
 	{
-		std::cout << _name << e.what() << std::endl;
+		std::cout << b.getName() << e.what() << std::endl;
 	}
 
 	return ( _sign );
@@ -125,9 +126,9 @@ std::ostream&	operator<<( std::ostream& outstream, const Form &target )
 	else
 		outstream << ", unsigned";
 	outstream << ", grade required for execution : ";
-	outstream << target.getGradex();
+	outstream << target.getXGrade();
 	outstream << ", grade required for signing : ";
-	outstream << target.getGrades();
+	outstream << target.getSGrade();
 	outstream << ".";
 
 	return ( outstream );
