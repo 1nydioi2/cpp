@@ -6,33 +6,16 @@
 #include "PresidentialPardonForm.hpp"
 
 
-void	testB( Bureaucrat &joe )
-{
-	std::cout << joe << std::endl;
-	
-	std::cout << "lowerGrade( 1 ) : ";
-	joe.lowerGrade( 1 );
-	std::cout << std::endl;
-	
-	std::cout << "raiseGrade( 2 ) : ";
-	joe.raiseGrade( 2 );
-	std::cout << std::endl;
-	
-	std::cout << joe << std::endl;
-	
-	std::cout << std::endl;
-	std::cout << std::endl;
 
-	return ;
-}
-
-void	testF( Form &f, Bureaucrat &b )
+void	testF( AForm &f, Bureaucrat &b )
 {
 	std::cout << f << std::endl;
 
 	b.signForm( f );
 	
 	std::cout << std::endl;
+
+	b.executeForm
 
 	return ;
 }
@@ -47,26 +30,27 @@ int main()
 	Bureaucrat laurene( "Laurene", 42 );
 	testB( laurene );
 
-	Bureaucrat ano;
-	testB( ano );
+	Bureaucrat anon;
+	testB( anon );
 
-	Form	draw1( "draw", 24, 42 ), draw2( "draw", 24, 42 ), draw3( "draw", 24, 42 );
-	testF( draw1, joseph );
-	testF( draw2, laurene );
-	testF( draw3, ano );
+	ShrubberyCreationForm	oak( "oak" ), birch( "birch" ), hazel( "hazel" );
+	testF( oak, joseph );
+	testF( birch, laurene );
+	testF( hazel, ano );
 	
-	Form	tap1( "tap", 42, 24 ), tap2( "tap", 42, 24 ), tap3( "tap", 42, 24 );
-	testF( tap1, joseph );
-	testF( tap2, laurene );
-	testF( tap3, ano );
+	RobotomyRequestForm		joe( "joe" ), lolo( "lolo" ), ano( "ano" );
+	testF( joe, joseph );
+	testF( lolo, laurene );
+	testF( ano, anon );
 	
-	Form	blank1, blank2, blank3;
-	testF( blank1, joseph );
-	testF( blank2, laurene );
-	testF( blank3, ano );
+	PresidentialPardonForm	joee( "joee" ), loloo( "loloo" ), anoo( "anoo" );
+	testF( joee, joseph );
+	testF( loloo, laurene );
+	testF( anoo, anon );
 
-	Form	wrong( "wrong", 0, 151 );
-	testF( wrong, ano );
+	Bureaucrat	przei( "Professor Zei, Anthropoloogist", 2, 2 );
+
+	testF( anoo, przei );
 
 
 	return 0;
