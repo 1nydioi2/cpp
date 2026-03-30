@@ -4,7 +4,7 @@
 #include "Form.hpp"
 
 
-class	Form;
+class	AForm;
 
 class	Bureaucrat
 {
@@ -33,8 +33,9 @@ class	Bureaucrat
 		void		raiseGrade( int x );
 		void		lowerGrade( int x );
 
-		void	signForm( Form &f );
-
+		void	executeForm( AForm const & form ) const;
+		void	signForm( AForm &f );
+		
 
 	private:
 		const std::string	_name;

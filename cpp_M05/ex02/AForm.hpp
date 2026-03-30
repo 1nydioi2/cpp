@@ -7,15 +7,15 @@
 
 class	Bureaucrat;
 
-class	Form
+class	AForm
 {
 	public:
-		Form( void );
-		Form( std::string name, int xgrade, int sgrade );
-		Form( const Form& source );
-		~Form( void );
+		AForm( void );
+		AForm( std::string name, int xgrade, int sgrade );
+		AForm( const AForm& source );
+		~AForm( void );
 
-		void			operator=( const Form& other );
+		void			operator=( const AForm& other );
 
 		class	GradeTooLowException : public std::exception
 		{
@@ -29,12 +29,13 @@ class	Form
 				const char	*what( void ) const throw();
 		};
 		
-		std::string	getName( void ) const;
-		int			getXGrade( void ) const;
-		int			getSGrade( void ) const;
-		bool		getSign( void ) const;
+		std::string		getName( void ) const;
+		int				getXGrade( void ) const;
+		int				getSGrade( void ) const;
+		bool			getSign( void ) const;
 
-		bool		beSigned( const Bureaucrat &b );
+		bool			beSigned( const Bureaucrat &b );
+		virtual void	execute( Bureaucrat const & executor ) = 0;
 
 
 	private:
@@ -44,4 +45,4 @@ class	Form
 		const int 			_sgrade;
 };
 
-std::ostream&	operator<<( std::ostream& out, const Form& other );
+std::ostream&	operator<<( std::ostream& out, const AForm& other );

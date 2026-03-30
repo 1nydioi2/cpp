@@ -115,6 +115,16 @@ void	Bureaucrat::lowerGrade( int x )
 }
 
 
+void	Bureaucrat::executeForm( AForm const & form ) const;
+{
+	if ( f.execute( (*this) ) )
+		std::cout << getName() << " succesfully executed the for destined to " << f.getName() << std::endl;
+	else
+		std::cout << getName() << ", lacking the required grade, couldn't execute the form for " << f.getName() << std::endl;
+
+	return ;
+}
+
 void	Bureaucrat::signForm( Form &f )
 {
 	if ( f.beSigned( (*this) ) )

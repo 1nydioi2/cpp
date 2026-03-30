@@ -1,6 +1,9 @@
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 
 void	testB( Bureaucrat &joe )
