@@ -3,6 +3,7 @@
 #include <fstream>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 
 
@@ -39,28 +40,20 @@ ShrubberyCreationForm::~ShrubberyCreationForm( void )
 }
 
 
-void	ShrubberyCreationForm::operator=( const AForm& other )
+bool	ShrubberyCreationForm::execute( Bureaucrat const & b ) const
 {
-	if (this == &other)
-		return;
-	setSign( other.getSign() );
+	bool	ret = 0;
 
-	return ;
-}
-
-
-void	ShrubberyCreationForm::execute( Bureaucrat const & b )
-{	
 	try
 	{
-		if ( getSign() && b.getGrade() > getXGrade() )
-			throw ( AForm::GradeTooLowException() );
-		else
+		if ( b.getGrade() > getXGrade() )
+			throw ( GradeTooLowException() );
+		else if ( getSign() )
 		{
 			std::string	filename = getName() + "_shrubbery";
-			ofstream target( filename );
+			std::ofstream target( filename.c_str() );
 			
-			target << "					\
+			target << "\
 			  ..............              \n\
           ......................          \n\
         .......@@@@@@@@@@.........        \n\
@@ -85,6 +78,7 @@ void	ShrubberyCreationForm::execute( Bureaucrat const & b )
           .........@@@..@@......          \n\
               ..............              ";
 			target.close();
+			ret = 1;
 		}
 	}
 	catch ( std::exception & e )
@@ -92,11 +86,11 @@ void	ShrubberyCreationForm::execute( Bureaucrat const & b )
 		std::cout << b.getName() << e.what() << std::endl;
 	}
 
-	return;
+	return( ret );
 }
 
 
-std::ostream&	operator<<( std::ostream& outstream, const AForm &target )
+std::ostream&	operator<<( std::ostream& outstream, const ShrubberyCreationForm &target )
 {
 	outstream << "ShrubberyCreationForm ";
 	outstream << target.getName();

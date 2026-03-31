@@ -6,7 +6,7 @@
 
 
 
-class	RobotomyRequestForm
+class	RobotomyRequestForm : public AForm
 {
 	public:
 		RobotomyRequestForm( void );
@@ -14,9 +14,7 @@ class	RobotomyRequestForm
 		RobotomyRequestForm( const AForm& source );
 		~RobotomyRequestForm( void );
 
-		void			operator=( const AForm& other );
-
-		void		execute( Bureaucrat const & executor );
+		bool		execute( Bureaucrat const & executor ) const;
 };
 
-std::ostream&	operator<<( std::ostream& out, const AForm& other );
+std::ostream&	operator<<( std::ostream& out, const RobotomyRequestForm& other );

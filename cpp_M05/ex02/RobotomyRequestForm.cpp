@@ -3,6 +3,7 @@
 #include <ctime>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 
 
@@ -23,7 +24,7 @@ RobotomyRequestForm::RobotomyRequestForm( std::string name )
 }
 
 RobotomyRequestForm::RobotomyRequestForm( const AForm& source )
-:	AForm( source.getName, 45, 72 )
+:	AForm( source.getName(), 45, 72 )
 {
 	std::cout << "RobotomyRequestForm Copy Construtor called." << std::endl;
 	setSign( source.getSign() );
@@ -39,32 +40,24 @@ RobotomyRequestForm::~RobotomyRequestForm( void )
 }
 
 
-void	RobotomyRequestForm::operator=( const AForm& other )
+bool	RobotomyRequestForm::execute( Bureaucrat const & b ) const
 {
-	if (this == &other)
-		return;
-	setSign( other.getSign() );
+	bool ret = 0;
 
-	return ;
-}
-
-
-void	RobotomyRequestForm::execute( Bureaucrat const & b )
-{	
 	try
 	{
-		if ( getSign() && b.getGrade() > getXGrade() )
-			throw ( AForm::GradeTooLowException() );
-		else
+		if ( b.getGrade() > getXGrade() )
+			throw ( GradeTooLowException() );
+		else if ( getSign() )
 		{
-			time_t timestamp;
+			time_t timestamp = time( NULL );
 
-			time( &timestamp );
 			std::cout << "DZZZZZ..." << std::endl;
-			if ( ctime( &timestamp ) % 2 )
+			if ( timestamp % 2 )
 				std::cout << getName() << "has successfully been robotomized. x)" << std::endl;
 			else	
 				std::cout << getName() << "resisted robotomization. x(" << std::endl;
+			ret = 1;
 		}
 	}
 	catch ( std::exception & e )
@@ -72,11 +65,11 @@ void	RobotomyRequestForm::execute( Bureaucrat const & b )
 		std::cout << b.getName() << e.what() << std::endl;
 	}
 
-	return;
+	return ( ret );
 }
 
 
-std::ostream&	operator<<( std::ostream& outstream, const AForm &target )
+std::ostream&	operator<<( std::ostream& outstream, const RobotomyRequestForm &target )
 {
 	outstream << "RobotomyRequestForm ";
 	outstream << target.getName();

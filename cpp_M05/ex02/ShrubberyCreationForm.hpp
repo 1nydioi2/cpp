@@ -6,17 +6,15 @@
 
 
 
-class	ShrubberyCreationForm
+class	ShrubberyCreationForm : public AForm
 {
 	public:
 		ShrubberyCreationForm( void );
 		ShrubberyCreationForm( std::string name );
 		ShrubberyCreationForm( const AForm& source );
 		~ShrubberyCreationForm( void );
-
-		void			operator=( const AForm& other );
 	
-		void		execute( Bureaucrat const & executor );
+		bool		execute( Bureaucrat const & executor ) const;
 };
 
-
+std::ostream&	operator<<( std::ostream& out, const ShrubberyCreationForm& other );

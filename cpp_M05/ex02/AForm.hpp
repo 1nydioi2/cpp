@@ -36,7 +36,7 @@ class	AForm
 		void			setSign( bool sign );
 
 		bool			beSigned( const Bureaucrat &b );
-		virtual void	execute( Bureaucrat const & executor ) = 0;
+		virtual bool	execute( Bureaucrat const & executor ) const = 0;
 
 
 	private:

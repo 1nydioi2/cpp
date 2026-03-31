@@ -27,12 +27,12 @@ int main()
 	Bureaucrat joseph( "Joseph", 24 );
 	Bureaucrat laurene( "Laurene", 42 );
 	Bureaucrat anon;
-	Bureaucrat	przei( "Professor Zei, Anthropoloogist", 2 );
+	Bureaucrat przei( "Professor Zei, Anthropoloogist", 2 );
 
-	ShrubberyCreationForm	oak( "oak" ), birch( "birch" ), hazel( "hazel" );
+	ShrubberyCreationForm 	oak( "oak" ), birch( "birch" ), hazel( "hazel" );
 	testF( oak, joseph );
 	testF( birch, laurene );
-	testF( hazel, ano );
+	testF( hazel, anon );
 	
 	RobotomyRequestForm		joe( "joe" ), lolo( "lolo" ), ano( "ano" );
 	testF( joe, joseph );

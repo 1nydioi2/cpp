@@ -6,7 +6,7 @@
 
 
 
-class	PresidentialPardonForm
+class	PresidentialPardonForm : public AForm
 {
 	public:
 		PresidentialPardonForm( void );
@@ -14,9 +14,7 @@ class	PresidentialPardonForm
 		PresidentialPardonForm( const AForm& source );
 		~PresidentialPardonForm( void );
 
-		void			operator=( const AForm& other );
-		
-		void		execute( Bureaucrat const & executor );
+		bool		execute( Bureaucrat const & executor ) const;
 };
 
-std::ostream&	operator<<( std::ostream& out, const AForm& other );
+std::ostream&	operator<<( std::ostream& out, const PresidentialPardonForm& other );

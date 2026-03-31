@@ -2,6 +2,7 @@
 #include <string>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 
 
@@ -38,35 +39,30 @@ PresidentialPardonForm::~PresidentialPardonForm( void )
 }
 
 
-void	PresidentialPardonForm::operator=( const AForm& other )
+bool	PresidentialPardonForm::execute( Bureaucrat const & b ) const
 {
-	if (this == &other)
-		return;
-	setSign( other.getSign() );
+	bool ret = 0;
 
-	return ;
-}
-
-
-void	PresidentialPardonForm::execute( Bureaucrat const & b )
-{	
 	try
 	{
-		if ( getSign && b.getGrade() > getXGrade() )
-			throw ( AForm::GradeTooLowException() );
-		else
+		if ( b.getGrade() > getXGrade() )
+			throw ( GradeTooLowException() );
+		else if ( getSign() )
+		{
 			std::cout << getName() << "Has been pardoned by Zaphod Beeblebrox." << std::endl;
+			ret = 1;
+		}
 	}
 	catch ( std::exception & e )
 	{
 		std::cout << b.getName() << e.what() << std::endl;
 	}
 
-	return;
+	return ( ret );
 }
 
 
-std::ostream&	operator<<( std::ostream& outstream, const AForm &target )
+std::ostream&	operator<<( std::ostream& outstream, const PresidentialPardonForm &target )
 {
 	outstream << "PresidentialPardonForm ";
 	outstream << target.getName();

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 
 
@@ -115,17 +116,17 @@ void	Bureaucrat::lowerGrade( int x )
 }
 
 
-void	Bureaucrat::executeForm( AForm const & form ) const;
+void	Bureaucrat::executeForm( AForm const & form ) const
 {
-	if ( f.execute( (*this) ) )
-		std::cout << getName() << " succesfully executed the for destined to " << f.getName() << std::endl;
+	if ( form.execute( (*this) ) )
+		std::cout << getName() << " succesfully executed the form " << form.getName() << std::endl;
 	else
-		std::cout << getName() << ", lacking the required grade, couldn't execute the form for " << f.getName() << std::endl;
+		std::cout << getName() << ", lacking the required grade, couldn't execute the form for " << form.getName() << std::endl;
 
 	return ;
 }
 
-void	Bureaucrat::signForm( Form &f )
+void	Bureaucrat::signForm( AForm &f )
 {
 	if ( f.beSigned( (*this) ) )
 		std::cout << getName() << " succesfully signed the " << f.getName() << "form." << std::endl;
