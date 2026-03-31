@@ -33,6 +33,7 @@ class	AForm
 		int				getXGrade( void ) const;
 		int				getSGrade( void ) const;
 		bool			getSign( void ) const;
+		void			setSign( bool sign );
 
 		bool			beSigned( const Bureaucrat &b );
 		virtual void	execute( Bureaucrat const & executor ) = 0;

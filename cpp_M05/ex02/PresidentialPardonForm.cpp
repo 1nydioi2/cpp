@@ -6,10 +6,7 @@
 
 
 PresidentialPardonForm::PresidentialPardonForm( void )
-:	_name( "Francois Besse" ),
-	_sign( false ),
-	_xgrade( 5 ),
-	_sgrade( 25 )
+:	AForm( "Francois Besse", 5, 25 )
 {
 	std::cout << "PresidentialPardonForm Default Construtor called." << std::endl;
 
@@ -17,23 +14,18 @@ PresidentialPardonForm::PresidentialPardonForm( void )
 }
 
 PresidentialPardonForm::PresidentialPardonForm( std::string name )
-:	_name( name ),
-	_sign( false ),
-	_xgrade( 5 ),
-	_sgrade( 25 )
+:	AForm( name, 5, 25 )
 {
 	std::cout << "PresidentialPardonForm Complete Construtor called." << std::endl;
 
 	return ;
 }
 
-PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm& source )
-:	_name( source._name ),
-	_sign( source._sign ),
-	_xgrade( 5 ),
-	_sgrade( 25 )
+PresidentialPardonForm::PresidentialPardonForm( const AForm& source )
+:	AForm( source.getName(), 5, 25 )
 {
 	std::cout << "PresidentialPardonForm Copy Construtor called." << std::endl;
+	setSign( source.getSign() );
 
 	return ;
 }
@@ -46,46 +38,13 @@ PresidentialPardonForm::~PresidentialPardonForm( void )
 }
 
 
-void	PresidentialPardonForm::operator=( const PresidentialPardonForm& other )
+void	PresidentialPardonForm::operator=( const AForm& other )
 {
 	if (this == &other)
 		return;
-	this->_sign = other._sign;
+	setSign( other.getSign() );
 
 	return ;
-}
-
-
-const char	*PresidentialPardonForm::GradeTooLowException::what( void ) const throw()
-{
-	return ( "'s grade is too low." );
-}
-
-
-const char	*PresidentialPardonForm::GradeTooHighException::what( void ) const throw()
-{
-	return ( "'s grade is too high." );
-}
-
-
-std::string	PresidentialPardonForm::getName( void ) const
-{
-	return ( this->_name );
-}
-
-bool	PresidentialPardonForm::getSign( void ) const
-{
-	return ( this->_sign );
-}
-
-int	PresidentialPardonForm::getXGrade( void ) const
-{
-	return ( this->_xgrade );
-}
-
-int	PresidentialPardonForm::getSGrade( void ) const
-{
-	return ( this->_sgrade );
 }
 
 
@@ -93,10 +52,10 @@ void	PresidentialPardonForm::execute( Bureaucrat const & b )
 {	
 	try
 	{
-		if ( _sign && b.getGrade() > _xgrade )
+		if ( getSign && b.getGrade() > getXGrade() )
 			throw ( AForm::GradeTooLowException() );
 		else
-			std::cout << _name << "Has been pardoned by Zaphod Beeblebrox" << std::endl;
+			std::cout << getName() << "Has been pardoned by Zaphod Beeblebrox." << std::endl;
 	}
 	catch ( std::exception & e )
 	{
@@ -107,7 +66,7 @@ void	PresidentialPardonForm::execute( Bureaucrat const & b )
 }
 
 
-std::ostream&	operator<<( std::ostream& outstream, const PresidentialPardonForm &target )
+std::ostream&	operator<<( std::ostream& outstream, const AForm &target )
 {
 	outstream << "PresidentialPardonForm ";
 	outstream << target.getName();

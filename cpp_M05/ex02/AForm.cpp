@@ -99,6 +99,13 @@ int	AForm::getSGrade( void ) const
 	return ( this->_sgrade );
 }
 
+void	AForm::setSign( bool sign )
+{
+	_sign = sign;
+
+	return;
+}
+
 
 bool	AForm::beSigned( const Bureaucrat &b )
 {

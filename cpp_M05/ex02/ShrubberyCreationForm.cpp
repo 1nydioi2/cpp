@@ -7,10 +7,7 @@
 
 
 ShrubberyCreationForm::ShrubberyCreationForm( void )
-:	_name( "Groot" ),
-	_sign( false ),
-	_xgrade( 137 ),
-	_sgrade( 145 )
+:	AForm( "Groot", 137, 145 )
 {
 	std::cout << "ShrubberyCreationForm Default Construtor called." << std::endl;
 
@@ -18,23 +15,18 @@ ShrubberyCreationForm::ShrubberyCreationForm( void )
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( std::string name )
-:	_name( name ),
-	_sign( false ),
-	_xgrade( 137 ),
-	_sgrade( 145 )
+:	AForm( name, 137, 145 )
 {
 	std::cout << "ShrubberyCreationForm Complete Construtor called." << std::endl;
 
 	return ;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm& source )
-:	_name( source._name ),
-	_sign( source._sign ),
-	_xgrade( 137 ),
-	_sgrade( 145 )
+ShrubberyCreationForm::ShrubberyCreationForm( const AForm& source )
+:	AForm( source.getName(), 137, 145 )
 {
 	std::cout << "ShrubberyCreationForm Copy Construtor called." << std::endl;
+	setSign( source.getSign() );
 
 	return ;
 }
@@ -47,46 +39,13 @@ ShrubberyCreationForm::~ShrubberyCreationForm( void )
 }
 
 
-void	ShrubberyCreationForm::operator=( const ShrubberyCreationForm& other )
+void	ShrubberyCreationForm::operator=( const AForm& other )
 {
 	if (this == &other)
 		return;
-	this->_sign = other._sign;
+	setSign( other.getSign() );
 
 	return ;
-}
-
-
-const char	*ShrubberyCreationForm::GradeTooLowException::what( void ) const throw()
-{
-	return ( "'s grade is too low." );
-}
-
-
-const char	*ShrubberyCreationForm::GradeTooHighException::what( void ) const throw()
-{
-	return ( "'s grade is too high." );
-}
-
-
-std::string	ShrubberyCreationForm::getName( void ) const
-{
-	return ( this->_name );
-}
-
-bool	ShrubberyCreationForm::getSign( void ) const
-{
-	return ( this->_sign );
-}
-
-int	ShrubberyCreationForm::getXGrade( void ) const
-{
-	return ( this->_xgrade );
-}
-
-int	ShrubberyCreationForm::getSGrade( void ) const
-{
-	return ( this->_sgrade );
 }
 
 
@@ -94,11 +53,11 @@ void	ShrubberyCreationForm::execute( Bureaucrat const & b )
 {	
 	try
 	{
-		if ( _sign && b.getGrade() > _xgrade )
+		if ( getSign() && b.getGrade() > getXGrade() )
 			throw ( AForm::GradeTooLowException() );
 		else
 		{
-			std::string	filename = _name + "_shrubbery";
+			std::string	filename = getName() + "_shrubbery";
 			ofstream target( filename );
 			
 			target << "					\
@@ -137,7 +96,7 @@ void	ShrubberyCreationForm::execute( Bureaucrat const & b )
 }
 
 
-std::ostream&	operator<<( std::ostream& outstream, const ShrubberyCreationForm &target )
+std::ostream&	operator<<( std::ostream& outstream, const AForm &target )
 {
 	outstream << "ShrubberyCreationForm ";
 	outstream << target.getName();

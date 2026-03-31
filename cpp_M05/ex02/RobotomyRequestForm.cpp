@@ -7,10 +7,7 @@
 
 
 RobotomyRequestForm::RobotomyRequestForm( void )
-:	_name( "Wall-E" ),
-	_sign( false ),
-	_xgrade( 45 ),
-	_sgrade( 72 )
+:	AForm( "Wall-E", 45, 72 )
 {
 	std::cout << "RobotomyRequestForm Default Construtor called." << std::endl;
 
@@ -18,23 +15,18 @@ RobotomyRequestForm::RobotomyRequestForm( void )
 }
 
 RobotomyRequestForm::RobotomyRequestForm( std::string name )
-:	_name( name ),
-	_sign( false ),
-	_xgrade( 45 ),
-	_sgrade( 72 )
+:	AForm( name, 45, 72 )
 {
 	std::cout << "RobotomyRequestForm Complete Construtor called." << std::endl;
 
 	return ;
 }
 
-RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm& source )
-:	_name( source._name ),
-	_sign( source._sign ),
-	_xgrade( 45 ),
-	_sgrade( 72 )
+RobotomyRequestForm::RobotomyRequestForm( const AForm& source )
+:	AForm( source.getName, 45, 72 )
 {
 	std::cout << "RobotomyRequestForm Copy Construtor called." << std::endl;
+	setSign( source.getSign() );
 
 	return ;
 }
@@ -47,46 +39,13 @@ RobotomyRequestForm::~RobotomyRequestForm( void )
 }
 
 
-void	RobotomyRequestForm::operator=( const RobotomyRequestForm& other )
+void	RobotomyRequestForm::operator=( const AForm& other )
 {
 	if (this == &other)
 		return;
-	this->_sign = other._sign;
+	setSign( other.getSign() );
 
 	return ;
-}
-
-
-const char	*RobotomyRequestForm::GradeTooLowException::what( void ) const throw()
-{
-	return ( "'s grade is too low." );
-}
-
-
-const char	*RobotomyRequestForm::GradeTooHighException::what( void ) const throw()
-{
-	return ( "'s grade is too high." );
-}
-
-
-std::string	RobotomyRequestForm::getName( void ) const
-{
-	return ( this->_name );
-}
-
-bool	RobotomyRequestForm::getSign( void ) const
-{
-	return ( this->_sign );
-}
-
-int	RobotomyRequestForm::getXGrade( void ) const
-{
-	return ( this->_xgrade );
-}
-
-int	RobotomyRequestForm::getSGrade( void ) const
-{
-	return ( this->_sgrade );
 }
 
 
@@ -94,7 +53,7 @@ void	RobotomyRequestForm::execute( Bureaucrat const & b )
 {	
 	try
 	{
-		if ( _sign && b.getGrade() > _xgrade )
+		if ( getSign() && b.getGrade() > getXGrade() )
 			throw ( AForm::GradeTooLowException() );
 		else
 		{
@@ -103,9 +62,9 @@ void	RobotomyRequestForm::execute( Bureaucrat const & b )
 			time( &timestamp );
 			std::cout << "DZZZZZ..." << std::endl;
 			if ( ctime( &timestamp ) % 2 )
-				std::cout << _name << "has successfully been robotomized. x)" << std::endl;
+				std::cout << getName() << "has successfully been robotomized. x)" << std::endl;
 			else	
-				std::cout << _name << "resisted robotomization. x(" << std::endl;
+				std::cout << getName() << "resisted robotomization. x(" << std::endl;
 		}
 	}
 	catch ( std::exception & e )
@@ -117,7 +76,7 @@ void	RobotomyRequestForm::execute( Bureaucrat const & b )
 }
 
 
-std::ostream&	operator<<( std::ostream& outstream, const RobotomyRequestForm &target )
+std::ostream&	operator<<( std::ostream& outstream, const AForm &target )
 {
 	outstream << "RobotomyRequestForm ";
 	outstream << target.getName();

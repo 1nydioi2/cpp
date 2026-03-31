@@ -11,30 +11,12 @@ class	RobotomyRequestForm
 	public:
 		RobotomyRequestForm( void );
 		RobotomyRequestForm( std::string name );
-		RobotomyRequestForm( const RobotomyRequestForm& source );
+		RobotomyRequestForm( const AForm& source );
 		~RobotomyRequestForm( void );
 
-		void			operator=( const RobotomyRequestForm& other );
-/*
-		class	GradeTooLowException : public std::exception
-		{
-			public:
-				const char	*what( void ) const throw();
-		};
+		void			operator=( const AForm& other );
 
-		class	GradeTooHighException : public std::exception
-		{
-			public:
-				const char	*what( void ) const throw();
-		};
-*/		
 		void		execute( Bureaucrat const & executor );
-
-	private:
-		const std::string	_name;
-		bool				_sign;
-		const int 			_xgrade;
-		const int 			_sgrade;
 };
 
-std::ostream&	operator<<( std::ostream& out, const RobotomyRequestForm& other );
+std::ostream&	operator<<( std::ostream& out, const AForm& other );

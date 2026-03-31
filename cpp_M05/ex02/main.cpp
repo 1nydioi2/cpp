@@ -15,7 +15,7 @@ void	testF( AForm &f, Bureaucrat &b )
 	
 	std::cout << std::endl;
 
-	b.executeForm
+	b.executeForm( f );
 
 	return ;
 }
@@ -25,13 +25,9 @@ int main()
 {
 
 	Bureaucrat joseph( "Joseph", 24 );
-	testB( joseph );
-
 	Bureaucrat laurene( "Laurene", 42 );
-	testB( laurene );
-
 	Bureaucrat anon;
-	testB( anon );
+	Bureaucrat	przei( "Professor Zei, Anthropoloogist", 2 );
 
 	ShrubberyCreationForm	oak( "oak" ), birch( "birch" ), hazel( "hazel" );
 	testF( oak, joseph );
@@ -48,7 +44,6 @@ int main()
 	testF( loloo, laurene );
 	testF( anoo, anon );
 
-	Bureaucrat	przei( "Professor Zei, Anthropoloogist", 2, 2 );
 
 	testF( anoo, przei );
 
