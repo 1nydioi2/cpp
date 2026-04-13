@@ -4,6 +4,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 
 
@@ -23,7 +24,7 @@ void	testF( AForm &f, Bureaucrat &b )
 
 int main()
 {
-
+/*
 	Bureaucrat joseph( "Joseph", 24 );
 	Bureaucrat laurene( "Laurene", 42 );
 	Bureaucrat anon;
@@ -46,7 +47,13 @@ int main()
 
 
 	testF( anoo, przei );
-
-
-	return 0;
+*/
+	Bureaucrat joseph( "Joseph", 24 );
+	Intern marco;
+	AForm *form = marco.makeForm( "ShrubberyCreationForm", "Ebony" );
+	joseph.signForm( *form );
+	joseph.executeForm( *form );
+	delete ( form );
+	
+	return ( 0 );
 }

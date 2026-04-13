@@ -13,7 +13,7 @@ class	AForm
 		AForm( void );
 		AForm( std::string name, int xgrade, int sgrade );
 		AForm( const AForm& source );
-		~AForm( void );
+		virtual ~AForm( void );
 
 		void			operator=( const AForm& other );
 
