@@ -33,7 +33,7 @@ fclean: clean
 	rm -f $(NAME)
 
 clean:
-	rm -f $(OBJECTS)
+	rm -f $(OBJECTS) *shrubbery
 
 re: fclean all
 

@@ -49,7 +49,7 @@ bool	PresidentialPardonForm::execute( Bureaucrat const & b ) const
 			throw ( GradeTooLowException() );
 		else if ( getSign() )
 		{
-			std::cout << getName() << "Has been pardoned by Zaphod Beeblebrox." << std::endl;
+			std::cout << getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 			ret = 1;
 		}
 	}

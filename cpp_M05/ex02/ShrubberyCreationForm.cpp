@@ -54,7 +54,7 @@ bool	ShrubberyCreationForm::execute( Bureaucrat const & b ) const
 			std::ofstream target( filename.c_str() );
 			
 			target << "\
-			  ..............              \n\
+              ..............              \n\
           ......................          \n\
         .......@@@@@@@@@@.........        \n\
       ........@@@@@@@++@@@@@@@@.....      \n\

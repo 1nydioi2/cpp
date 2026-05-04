@@ -2,19 +2,19 @@
 #include "Bureaucrat.hpp"
 
 
-void	test( Bureaucrat &joe )
+void	test( Bureaucrat &bur )
 {
-	std::cout << joe << std::endl;
+	std::cout << bur << std::endl;
 	
 	std::cout << "lowerGrade( 1 ) : ";
-	joe.lowerGrade( 1 );
+	bur.lowerGrade( 1 );
 	std::cout << std::endl;
 	
 	std::cout << "raiseGrade( 2 ) : ";
-	joe.raiseGrade( 2 );
+	bur.raiseGrade( 2 );
 	std::cout << std::endl;
 	
-	std::cout << joe << std::endl;
+	std::cout << bur << std::endl;
 	
 	std::cout << std::endl;
 	std::cout << std::endl;

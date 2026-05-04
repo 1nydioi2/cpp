@@ -9,13 +9,14 @@
 
 void	testF( AForm &f, Bureaucrat &b )
 {
+	std::cout << std::endl;
+	
 	std::cout << f << std::endl;
 
 	b.signForm( f );
+	b.executeForm( f );
 	
 	std::cout << std::endl;
-
-	b.executeForm( f );
 
 	return ;
 }
@@ -24,28 +25,16 @@ void	testF( AForm &f, Bureaucrat &b )
 int main()
 {
 
-	Bureaucrat joseph( "Joseph", 24 );
-	Bureaucrat laurene( "Laurene", 42 );
-	Bureaucrat anon;
-	Bureaucrat przei( "Professor Zei, Anthropoloogist", 2 );
+	Bureaucrat pr_zei( "Professor Zei, Anthropologist", 2 );
 
-	ShrubberyCreationForm 	oak( "oak" ), birch( "birch" ), hazel( "hazel" );
-	testF( oak, joseph );
-	testF( birch, laurene );
-	testF( hazel, anon );
+	ShrubberyCreationForm	hazel( "Hazel" );
+	testF( hazel, pr_zei );
 	
-	RobotomyRequestForm		joe( "joe" ), lolo( "lolo" ), ano( "ano" );
-	testF( joe, joseph );
-	testF( lolo, laurene );
-	testF( ano, anon );
+	RobotomyRequestForm		robbie( "Robbie" );
+	testF( robbie, pr_zei );
 	
-	PresidentialPardonForm	joee( "joee" ), loloo( "loloo" ), anoo( "anoo" );
-	testF( joee, joseph );
-	testF( loloo, laurene );
-	testF( anoo, anon );
-
-
-	testF( anoo, przei );
+	PresidentialPardonForm	sauvage( "Sauvage" );
+	testF( sauvage, pr_zei );
 
 
 	return 0;

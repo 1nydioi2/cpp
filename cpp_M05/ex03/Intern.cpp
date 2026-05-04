@@ -32,7 +32,6 @@ int	tabling( std::string name )
 	{	
 		if ( name == tab[i] )
 			return ( i );
-		i++;
 	}
 	
 	return ( -1 );			

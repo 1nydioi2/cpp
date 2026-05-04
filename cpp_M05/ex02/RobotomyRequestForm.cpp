@@ -54,9 +54,9 @@ bool	RobotomyRequestForm::execute( Bureaucrat const & b ) const
 
 			std::cout << "DZZZZZ..." << std::endl;
 			if ( timestamp % 2 )
-				std::cout << getName() << "has successfully been robotomized. x)" << std::endl;
+				std::cout << getName() << " has successfully been robotomized. x)" << std::endl;
 			else	
-				std::cout << getName() << "resisted robotomization. x(" << std::endl;
+				std::cout << getName() << " resisted robotomization. x(" << std::endl;
 			ret = 1;
 		}
 	}
