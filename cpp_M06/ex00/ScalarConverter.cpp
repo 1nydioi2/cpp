@@ -24,8 +24,8 @@ void	ScalarConverter::convert( std::string literal )
 		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: " << liti << std::endl;
 	std::cout << std::fixed;
-	std::cout << "float: " << std::setprecision( 16 ) << litf << "f" << std::endl;
-	std::cout << "double: " << std::setprecision( 32 ) << litd << std::endl;
+	std::cout << "float: " << std::setprecision( literal.length() ) << litf << "f" << std::endl;
+	std::cout << "double: " << std::setprecision( literal.length() ) << litd << std::endl;
 
 	return ;
 }
