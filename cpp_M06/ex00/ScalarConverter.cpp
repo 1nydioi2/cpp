@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <sstream>
 #include <cstdlib>
@@ -9,21 +10,22 @@
 void	ScalarConverter::convert( std::string literal )
 {
 	std::stringstream	lit;
-	int			liti;
-	float			litf;
-	double			litd;
+	int					liti;
+	float				litf;
+	double				litd;
 
 	lit << literal;
 	lit >> liti;
-	litf = std::atof( literal.c_str() );
 	litd = std::atof( literal.c_str() );
+	litf = static_cast<float>(litd);
 	if ( liti > 32 && liti < 127 )
 		std::cout << "char: " << static_cast<char>(liti) << std::endl;
 	else
-		std::cout << "char: Non displayable." << std::endl;
+		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: " << liti << std::endl;
-	std::cout << "float: " << litf << std::endl;
-	std::cout << "double: " << litd << std::endl;
+	std::cout << std::fixed;
+	std::cout << "float: " << std::setprecision( 16 ) << litf << "f" << std::endl;
+	std::cout << "double: " << std::setprecision( 32 ) << litd << std::endl;
 
 	return ;
 }
