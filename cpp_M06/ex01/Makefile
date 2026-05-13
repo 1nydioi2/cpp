@@ -2,22 +2,12 @@ COMPILER = c++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = ex03
+NAME = ex01
 
 SOURCES = main.cpp\
-		Bureaucrat.cpp\
-		AForm.cpp\
-		ShrubberyCreationForm.cpp\
-		RobotomyRequestForm.cpp\
-		PresidentialPardonForm.cpp\
-		Intern.cpp
+		ScalarConverter.cpp
 		
-HEADER_FILES = Bureaucrat.hpp\
-		AForm.hpp\
-		ShrubberyCreationForm.hpp\
-		RobotomyRequestForm.hpp\
-		PresidentialPardonForm.hpp\
-		Intern.cpp
+HEADER_FILES = ScalarConverter.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
