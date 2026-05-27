@@ -15,7 +15,7 @@ void	literal_char( std::string literal )
 	std::cout << "char: " << literal[0] << std::endl;	
 	std::cout << "int: " << static_cast<int>(literal[0]) << std::endl;
 	std::cout << std::fixed;
-	std::cout << "float: " << static_cast<float>(literal[0]) << std::endl;
+	std::cout << "float: " << static_cast<float>(literal[0]) << 'f' << std::endl;
 	std::cout << "double: " << static_cast<double>(literal[0]) << std::endl;
 
 	return ;
@@ -46,7 +46,7 @@ void	literal_int( std::string literal )
 	std::cout << std::fixed;
 
 	if ( litd < std::numeric_limits<float>::max() && litd > -std::numeric_limits<float>::max() )
-		std::cout << "float: " << litf << std::endl;
+		std::cout << "float: " << litf << 'f' << std::endl;
 	else
 		std::cout << "float: Out of limits" << litd << std::endl;
 
@@ -148,11 +148,8 @@ void	literal_double( std::string literal )
 
 void	fork( std::string literal )
 {
-	if ( literal.length() == 1 )
-	{
-		if ( literal[0] < '0' || literal[0] > '9' )
+	if ( literal.length() == 1 && ( literal[0] < '0' || literal[0] > '9' ) )
 			literal_char( literal );
-	}
 	else if ( literal.find( '.' ) == std::string::npos && literal.find('f') == std::string::npos )
 		literal_int( literal );
 	else if ( literal.find('f') != std::string::npos )
