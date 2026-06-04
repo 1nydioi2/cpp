@@ -7,5 +7,6 @@
 class	ScalarConverter
 {
 	public:
-		static void	convert( std::string literal );
+		virtual void	abstract() = 0;
+		static	void	convert( std::string literal );
 };

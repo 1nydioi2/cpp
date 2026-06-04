@@ -2,7 +2,7 @@ COMPILER = c++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = ex01
+NAME = ex00
 
 SOURCES = main.cpp\
 		ScalarConverter.cpp
