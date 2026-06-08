@@ -2,26 +2,22 @@ COMPILER = c++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = ex03
+CPP_V = -std=c++98
 
-SOURCES = main.cpp\
-		Bureaucrat.cpp\
-		AForm.cpp\
-		ShrubberyCreationForm.cpp\
-		RobotomyRequestForm.cpp\
-		PresidentialPardonForm.cpp\
-		Intern.cpp
+NAME = ex02
+
+SOURCES =	main.cpp\
+			Base.cpp\
+			A.cpp\
+			B.cpp\
+			C.cpp
 		
-HEADER_FILES = Bureaucrat.hpp\
-		AForm.hpp\
-		ShrubberyCreationForm.hpp\
-		RobotomyRequestForm.hpp\
-		PresidentialPardonForm.hpp\
-		Intern.cpp
+HEADER_FILES =	Base.hpp\
+				A.hpp\
+				B.hpp\
+				C.hpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
-
-CPP_V = -std=c++98
 
 all: $(NAME)
 
