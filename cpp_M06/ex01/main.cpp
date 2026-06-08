@@ -1,19 +1,21 @@
 #include <iostream>
-#include <string>
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
+#include "Data_s.hpp"
 
 
 
-int main( int argc, char *argv[])
+int main()
 {
-	if ( argc != 2 )
-		return ( 1 );
+	Data_s 		a;
+	uintptr_t	adr;
+	Data_s		*a_ptr;
+	
+	a.value = 42;
+	adr = Serializer::serialize( &a );
+	a_ptr = Serializer::deserialize( adr );
 
-	std::string literal( argv[1] );
-	ScalarConverter::convert( literal );
-	//ScalarConverter a;
-
-	//(void) a;
+	std::cout << "adr = " << adr << "\ta_ptr = " << a_ptr << std::endl;
+	std::cout << "\na.value = " << a.value << "\ta_ptr.value = " << a_ptr->value << std::endl;
 
 	return ( 0 );
 }

@@ -1,19 +1,19 @@
 #include <iostream>
-#include <stdin>
 #include "Serializer.hpp"
+#include "Data_s.hpp"
 
 
 
-uintptr_t	serialize( Data* ptr )
+uintptr_t	Serializer::serialize( Data_s* ptr )
 {
-	uintptr_t res = ptr;
+	uintptr_t res = reinterpret_cast < uintptr_t > ( ptr );
 
 	return ( res );
 }
 
-Data*		deserialize( uintptr_t raw )
+Data_s*		Serializer::deserialize( uintptr_t raw )
 {
-	Data res;
+	Data_s *res = reinterpret_cast < Data_s* > ( raw );
 
 	return ( res );
 }

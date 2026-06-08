@@ -2,16 +2,17 @@ COMPILER = c++
 
 COMPILATION_FLAGS = -Wall -Wextra -Werror
 
-NAME = ex00
+CPP_V = -std=c++98
 
-SOURCES = main.cpp\
-		ScalarConverter.cpp
+NAME = ex01
+
+SOURCES =	main.cpp\
+			Serializer.cpp\
 		
-HEADER_FILES = ScalarConverter.cpp
+HEADER_FILES =	Serializer.hpp\
+				Data_s.hpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
-
-CPP_V = -std=c++98
 
 all: $(NAME)
 
