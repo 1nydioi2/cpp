@@ -4,7 +4,4 @@
 
 
 class	C : public Base
-{
-	public:
-			virtual ~Base();
-};
+{};

@@ -7,10 +7,7 @@ CPP_V = -std=c++98
 NAME = ex02
 
 SOURCES =	main.cpp\
-			Base.cpp\
-			A.cpp\
-			B.cpp\
-			C.cpp
+			Base.cpp
 		
 HEADER_FILES =	Base.hpp\
 				A.hpp\
@@ -31,7 +28,7 @@ fclean: clean
 	rm -f $(NAME)
 
 clean:
-	rm -f $(OBJECTS) *shrubbery
+	rm -f $(OBJECTS)
 
 re: fclean all
 

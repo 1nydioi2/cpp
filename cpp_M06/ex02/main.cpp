@@ -1,5 +1,5 @@
 #include <iostream>
-#include <ctime>
+#include <sys/time.h>
 #include "Base.hpp"
 #include "A.hpp"
 #include "B.hpp"
@@ -9,12 +9,15 @@
 
 Base *	generate( void )
 {
-	Base *p;
-	time_t timestamp = time( NULL );
+	struct timeval	tv;
+	gettimeofday(&tv, NULL);
 
-	if ( timestamp.tm_sec < 3 )
+	Base	*p;
+	int		r = tv.tv_usec % 3;
+
+	if (r < 1 )
 		p = new A;
-	else if ( timestamp.tm_sec < 6 )
+	else if ( r < 2 )
 		p = new B;
 	else
 		p = new C;
@@ -24,25 +27,65 @@ Base *	generate( void )
 
 void	identify( Base *p )
 {
-	std::cout << "ptr : " << typeid( *p ) << std::endl;
+	std::cout << "ptr : ";
+	if ( dynamic_cast<A*>(p) )
+		std::cout << "Object type is A." << std::endl;
+	else if ( dynamic_cast<B*>(p) )
+		std::cout << "Object type is B." << std::endl;
+	else if ( dynamic_cast<C*>(p) )
+		std::cout << "Object type is C." << std::endl;
+	else
+		std::cout << "Object type is Base." << std::endl;
 
 	return;
 }
 
 void	identify( Base &p )
 {
-	std::cout << "ref : " << typeid( p ) << std::endl;
+	std::cout << "ref : ";
+	try
+	{
+		Base&	x = dynamic_cast< A& >( p );
+		std::cout << "Object type is A." << std::endl;
+		(void)x;
+	}
+	catch ( const std::exception& e )
+	{
+		try
+		{
+			Base&	x = dynamic_cast< B& >( p );
+			std::cout << "Object type is B." << std::endl;
+			(void)x;
+		}
+		catch ( const std::exception& e )
+		{
+			try
+			{
+				Base&	x = dynamic_cast< C& >( p );
+				std::cout << "Object type is C." << std::endl;
+				(void)x;
+			}
+			catch ( const std::exception& e )
+			{
+				std::cout << "Object type is Base." << std::endl;
+			}
+		}
+	}
 
 	return;
 }
 
 int main()
 {
-	Base *x = generate();
+	Base*	x = generate();
+	Base*	y = generate();
+	Base&	z = *y;
 
 	identify( x );
-	identify( &(*x) );
+	identify( z );
+	
 	delete x;
+	delete y;
 
 	return ( 0 );
 }

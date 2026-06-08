@@ -26,7 +26,7 @@ fclean: clean
 	rm -f $(NAME)
 
 clean:
-	rm -f $(OBJECTS) *shrubbery
+	rm -f $(OBJECTS)
 
 re: fclean all
 
