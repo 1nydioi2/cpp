@@ -8,6 +8,38 @@
 
 
 
+ScalarConverter::ScalarConverter( void )
+{
+	std::cout << "ScalarConverter Default Construtor called." << std::endl;
+
+	return ;
+}
+
+ScalarConverter::ScalarConverter( const ScalarConverter& source )
+{
+	std::cout << "ScalarConverter Copy Construtor called." << std::endl;
+	*this = source;
+
+	return ;
+}
+
+ScalarConverter::~ScalarConverter( void )
+{
+	std::cout << "ScalarConverter Destructor called." << std::endl;
+
+	return ;
+}
+
+
+void	ScalarConverter::operator=( const ScalarConverter& other )
+{
+	std::cout << "ScalarConverter assignment operator called." << std::endl;
+	(void) other;
+
+	return ;
+}
+
+
 void	literal_char( std::string literal )
 {
 	std::stringstream	lit;
@@ -15,6 +47,7 @@ void	literal_char( std::string literal )
 	std::cout << "char: " << literal[0] << std::endl;	
 	std::cout << "int: " << static_cast<int>(literal[0]) << std::endl;
 	std::cout << std::fixed;
+	std::cout << std::setprecision( 1 );
 	std::cout << "float: " << static_cast<float>(literal[0]) << 'f' << std::endl;
 	std::cout << "double: " << static_cast<double>(literal[0]) << std::endl;
 
@@ -44,6 +77,7 @@ void	literal_int( std::string literal )
 		std::cout << "int: Out of limits" << std::endl;
 
 	std::cout << std::fixed;
+	std::cout << std::setprecision( 1 );
 
 	if ( litd < std::numeric_limits<float>::max() && litd > -std::numeric_limits<float>::max() )
 		std::cout << "float: " << litf << 'f' << std::endl;
@@ -82,7 +116,8 @@ void	literal_float( std::string literal )
 	else
 		std::cout << "int: Out of limits" << std::endl;
 
-	std::cout << std::fixed;
+	std::cout << std::fixed; 
+	std::cout << std::setprecision( 1 );
 
 	if ( litd < std::numeric_limits<float>::max() && litd > -std::numeric_limits<float>::max() )
 	{	
@@ -125,7 +160,8 @@ void	literal_double( std::string literal )
 	else
 		std::cout << "int: Out of limits" << std::endl;
 
-	std::cout << std::fixed;
+	std::cout << std::fixed; 
+	std::cout << std::setprecision( 1 );
 
 	if ( litd < std::numeric_limits<float>::max() && litd > -std::numeric_limits<float>::max() )
 	{	

@@ -11,8 +11,8 @@ int main( int argc, char *argv[])
 
 	std::string literal( argv[1] );
 	ScalarConverter::convert( literal );
+	
 	//ScalarConverter a;
-
 	//(void) a;
 
 	return ( 0 );

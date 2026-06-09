@@ -75,6 +75,7 @@ void	identify( Base &p )
 	return;
 }
 
+
 int main()
 {
 	Base*	x = generate();

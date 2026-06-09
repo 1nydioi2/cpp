@@ -7,6 +7,13 @@
 class	ScalarConverter
 {
 	public:
-		virtual void	abstract() = 0;
-		static	void	convert( std::string literal );
+		static void	convert( std::string literal );
+	
+
+	private:
+		ScalarConverter( void );
+		ScalarConverter( const ScalarConverter& source );
+		~ScalarConverter( void );
+
+		void	operator=( const ScalarConverter& other );
 };
