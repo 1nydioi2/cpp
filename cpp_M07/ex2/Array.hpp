@@ -30,8 +30,8 @@ class	Array
 			{
 				ptr->setNext( new Array );
 				ptr->_next->setPrev( ptr );
-				*ptr = ptr->getNext();
-				*ptr_s = ptr_s->getNext();
+				ptr = ptr->getNext();
+				ptr_s = ptr_s->getNext();
 				ptr->setVal( ptr_s->getVal() );
 				ptr->setSize( n );
 			}
@@ -45,13 +45,12 @@ class	Array
 			_size = n;
 			_value = 0;
 			_prev = NULL;
-
 			Array*	ptr = this;
 			while ( --n )
 			{
 				ptr->setNext( new Array );
 				ptr->_next->setPrev( ptr );
-				*ptr = ptr->getNext();
+				ptr = ptr->getNext();
 				ptr->setVal( 0 );
 				ptr->setSize( n );
 			}
@@ -81,12 +80,12 @@ class	Array
 			return ( _size );
 		}
 		
-		Array*	getNext( void ) const
+		Array*	getNext( void )
 		{
 			return ( _next );
 		}
 		
-		Array*	getPrev( void ) const
+		Array*	getPrev( void )
 		{
 			return ( _prev );
 		}
@@ -103,11 +102,11 @@ class	Array
 		Array*		_next;
 
 
-	protected :
+//	protected :
 
 		void	setVal( T value )
 		{
-			this._value = value;
+			this->_value = value;
 
 			return;
 		}
