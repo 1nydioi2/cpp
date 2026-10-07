@@ -4,11 +4,15 @@ COMPILATION_FLAGS = -Wall -Wextra -Werror
 
 CPP_V = -std=c++98
 
-NAME = ex02
+NAME = ex0
 
-SOURCES =	main.cpp
+SOURCES =	main.cpp\
+			Base.cpp
 		
-HEADER_FILES =	Array.hpp
+HEADER_FILES =	Base.hpp\
+				A.hpp\
+				B.hpp\
+				C.hpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

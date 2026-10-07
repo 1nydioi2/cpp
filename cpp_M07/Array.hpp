@@ -19,17 +19,17 @@ class	Array
 
 		Array( Array &source )
 		{
-			unsigned int	n = source.size();
+			int n = source.size();
 			_size = n;
 			_value = source.getVal();
 			_prev = source.getPrev();
 
 			Array*	ptr = this;
-			Array*	ptr_s = &source;
+			Array*	ptr_s = source;
 			while ( --n )
 			{
 				ptr->setNext( new Array );
-				ptr->_next->setPrev( ptr );
+				ptr->next.setPrev( ptr );
 				*ptr = ptr->getNext();
 				*ptr_s = ptr_s->getNext();
 				ptr->setVal( ptr_s->getVal() );
@@ -50,7 +50,7 @@ class	Array
 			while ( --n )
 			{
 				ptr->setNext( new Array );
-				ptr->_next->setPrev( ptr );
+				ptr->next.setPrev( ptr );
 				*ptr = ptr->getNext();
 				ptr->setVal( 0 );
 				ptr->setSize( n );
