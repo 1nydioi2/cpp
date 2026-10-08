@@ -7,6 +7,8 @@ class	Array
 {
 	public :
 
+		T		_value;
+		
 		Array( void )
 		{
 			_size = 0;
@@ -28,14 +30,14 @@ class	Array
 			Array*	ptr_s = &source;
 			while ( --n )
 			{
-				ptr->setNext( new Array );
-				ptr->_next->setPrev( ptr );
+				ptr->_next = new Array;
+				ptr->_next->_prev = ptr;
 				ptr = ptr->getNext();
 				ptr_s = ptr_s->getNext();
-				ptr->setVal( ptr_s->getVal() );
-				ptr->setSize( n );
+				ptr->_value = ptr_s->getVal();
+				ptr->_size = n;
 			}
-			ptr->setNext( ptr_s->getPrev() );
+			ptr->_next = ptr_s->getPrev();
 
 			return;
 		}
@@ -48,27 +50,35 @@ class	Array
 			Array*	ptr = this;
 			while ( --n )
 			{
-				ptr->setNext( new Array );
-				ptr->_next->setPrev( ptr );
+				ptr->_next = new Array;
+				ptr->_next->_prev = ptr;
 				ptr = ptr->getNext();
-				ptr->setVal( 0 );
-				ptr->setSize( n );
+				ptr->_value = 0;
+				ptr->_size = n;
 			}
-			ptr->setNext( NULL );
+			ptr->_next = NULL;
 
 			return;
 		}
 
 		~Array( void )
 		{
+			
 			if ( _next != NULL )
 				delete _next;
-
+			
 			return;
 		}
 
 		//operator=( Array other );
-		//operator[]( unsigned int index );
+		T&	operator[]( unsigned int index )
+		{
+			Array*	iter = this;
+			for ( unsigned int i = 0; i < index; i++)
+				iter = iter->_next;
+
+			return ( iter->_value );
+		}
 
 		unsigned int size( void ) const
 		{
@@ -96,14 +106,13 @@ class	Array
 
 	private :
 
-		T		_value;
 		unsigned int	_size;
 		Array*		_prev;
 		Array*		_next;
 
 
 //	protected :
-
+/*
 		void	setVal( T value )
 		{
 			this->_value = value;
@@ -130,5 +139,5 @@ class	Array
 			_prev = ptr;
 
 			return;
-		}
+		}*/
 };
