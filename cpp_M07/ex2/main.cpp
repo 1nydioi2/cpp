@@ -15,11 +15,14 @@ int main(int, char**)
         mirror[i] = value;
     }
 
-    /*/SCOPE
+    //SCOPE
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
-    }*/
+    	std::cout << tmp.size() << '\t' <<  test.size() << std::endl;
+       	for (int i = 0; i < MAX_VAL; i++)
+		std::cout << tmp[i] << '\t' <<  test[i] << std::endl;
+    }
 
     for (int i = 0; i < MAX_VAL; i++)
     {
@@ -28,7 +31,7 @@ int main(int, char**)
             std::cerr << "didn't save the same value!!" << std::endl;
             return 1;
         }
-    }/*
+    }
     try
     {
         numbers[-2] = 0;
@@ -45,11 +48,11 @@ int main(int, char**)
     {
         std::cerr << e.what() << '\n';
     }
-*/
+
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }

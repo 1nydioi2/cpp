@@ -7,8 +7,10 @@ class	Array
 {
 	public :
 
+
 		T		_value;
-		
+
+
 		Array( void )
 		{
 			_size = 0;
@@ -23,8 +25,8 @@ class	Array
 		{
 			unsigned int	n = source.size();
 			_size = n;
-			_value = source.getVal();
-			_prev = source.getPrev();
+			_value = source._value;
+			_prev = source._prev;
 
 			Array*	ptr = this;
 			Array*	ptr_s = &source;
@@ -32,12 +34,12 @@ class	Array
 			{
 				ptr->_next = new Array;
 				ptr->_next->_prev = ptr;
-				ptr = ptr->getNext();
-				ptr_s = ptr_s->getNext();
-				ptr->_value = ptr_s->getVal();
+				ptr = ptr->_next;
+				ptr_s = ptr_s->_next;
+				ptr->_value = ptr_s->_value;
 				ptr->_size = n;
 			}
-			ptr->_next = ptr_s->getPrev();
+			ptr->_next = ptr_s->_next;
 
 			return;
 		}
@@ -52,7 +54,7 @@ class	Array
 			{
 				ptr->_next = new Array;
 				ptr->_next->_prev = ptr;
-				ptr = ptr->getNext();
+				ptr = ptr->_next;
 				ptr->_value = 0;
 				ptr->_size = n;
 			}
@@ -70,9 +72,45 @@ class	Array
 			return;
 		}
 
-		//operator=( Array other );
+
+		Array&	operator=( Array& other )
+		{
+			if ( &other == this )
+				return ( this );
+			
+			int	s = ( other._size <= INT_MAX) ? static_cast<int>(other._size) : static_cast<int>(other._size - INT_MIN) + INT_MIN;
+			Array*	ptr_s = &other;
+			
+			int	n = _size;
+			Array*	ptr = this;
+
+			while ( --s > 0 || --n > 0 )
+			{
+				if ( s <= 0 )
+				{
+					ptr = ptr->_next;
+					delete ptr->_prev;
+					continue;
+				}
+				if ( n <= 0 )
+				{
+					ptr->_next = new Array;
+					ptr->_next->_prev = ptr;
+				}
+				ptr = ptr->_next;
+				ptr_s = ptr_s->_next;
+				ptr->_value = ptr_s->_value;
+				ptr->_size = n;
+			}
+			
+			return ( this );
+		}
+
 		T&	operator[]( unsigned int index )
 		{
+			if ( index >= _size )
+				throw ( OutOfBoundsIndexException() );
+			
 			Array*	iter = this;
 			for ( unsigned int i = 0; i < index; i++)
 				iter = iter->_next;
@@ -80,64 +118,25 @@ class	Array
 			return ( iter->_value );
 		}
 
+
+		class	OutOfBoundsIndexException : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw()
+				{
+					return ( "Error : index is out of bounds" );
+				}
+		};
+
+
 		unsigned int size( void ) const
 		{
 			return ( _size );
 		}
-
-		T	getVal( void ) const
-		{
-			return ( _size );
-		}
-		
-		Array*	getNext( void )
-		{
-			return ( _next );
-		}
-		
-		Array*	getPrev( void )
-		{
-			return ( _prev );
-		}
-		
-
-		//class	OutOfBoundsException : std::exception
-
 
 	private :
 
 		unsigned int	_size;
 		Array*		_prev;
 		Array*		_next;
-
-
-//	protected :
-/*
-		void	setVal( T value )
-		{
-			this->_value = value;
-
-			return;
-		}
-
-		void	setSize( unsigned int size )
-		{
-			_size = size;
-
-			return;
-		}
-		
-		void	setNext( Array*	ptr )
-		{
-			_next = ptr;
-
-			return;
-		}
-		
-		void	setPrev( Array*	ptr )
-		{
-			_prev = ptr;
-
-			return;
-		}*/
 };

@@ -1,6 +1,6 @@
 COMPILER = c++
 
-COMPILATION_FLAGS = -Wall -Wextra -Werror# -fsanitize=address -g3
+COMPILATION_FLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 CPP_V = -std=c++98
 
