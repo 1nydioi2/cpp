@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iterator>
 #include <deque>
 #include <list>
 #include <stack>
@@ -10,37 +11,39 @@
 
 int	main( void )
 {
-	std::list<int>	l;
-	l.assign( 1, 2 );
-
-
 	int res = 0;
-	res = easyfind( l, 5 );
-	std::cout << res << std::endl;
-	
-	
-	/*
-	std::stack<int>				s = {6, 7};
-	std::queue<int>				q = {8, 9};
-	std::priority_queue<int>	pq = {10, 11};
-	std::vector<int>			v = {0, 1};
-	std::deque<int>				d = {2, 3};
 
-	res = easyfind( v, 0 );
+
+	std::deque<int>	d;
+	d.insert( d.begin(), 0 );
+	d.insert( ++d.begin(), 1 );
+	res = easyfind( d, 2 );
 	std::cout << res << std::endl;
 	
-	res = easyfind( d, 1 );
+	std::list<int>	l;
+	l.insert( l.begin(), 2 );
+	l.insert( ++l.begin(), 3 );
+	res = easyfind( l, 3 );
+	std::cout << res << std::endl;
+
+	std::vector<int>	v;
+	v.insert( v.begin(), 4 );
+	v.insert( ++v.begin(), 5 );
+	res = easyfind( v, 6 );
+	std::cout << res << std::endl;
+/*
+	std::stack<int>	s;
+	s.push( 2 );
+	s.push( 3 );
+	res = easyfind( s, 2 );
 	std::cout << res << std::endl;
 	
-	
-	res = easyfind( s, 4 );
+	std::queue<int>	q;
+	q.push( 4 );
+	q.push( 5 );
+	res = easyfind( q, 3 );
 	std::cout << res << std::endl;
+*/
 	
-	res = easyfind( q, 9 );
-	std::cout << res << std::endl;
-	
-	res = easyfind( pq, 11 );
-	std::cout << res << std::endl;
-	*/
 	return( 0 );
 }
