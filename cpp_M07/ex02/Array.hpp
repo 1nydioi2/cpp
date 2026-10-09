@@ -7,7 +7,6 @@ class	Array
 {
 	public :
 
-
 		T		_value;
 
 
@@ -20,9 +19,12 @@ class	Array
 
 			return ;
 		}
-
+		
+		
 		Array( Array &source )
 		{
+			*this = source;
+			/*
 			unsigned int	n = source.size();
 			_size = n;
 			_value = source._value;
@@ -40,7 +42,7 @@ class	Array
 				ptr->_size = n;
 			}
 			ptr->_next = ptr_s->_next;
-
+			*/
 			return;
 		}
 
@@ -65,7 +67,6 @@ class	Array
 
 		~Array( void )
 		{
-			
 			if ( _next != NULL )
 				delete _next;
 			
@@ -104,7 +105,7 @@ class	Array
 			}
 			
 			return ( this );
-		}
+		}	
 
 		T&	operator[]( unsigned int index )
 		{
