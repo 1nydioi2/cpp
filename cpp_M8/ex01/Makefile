@@ -6,9 +6,10 @@ CPP_V = -std=c++98
 
 NAME = ex1
 
-SOURCES =	main.cpp
+SOURCES =	main.cpp\
+			Span.cpp
 		
-HEADER_FILES =	iter.hpp
+HEADER_FILES =	Span.hpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
