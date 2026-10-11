@@ -29,7 +29,7 @@ class	Span
 		};
 
 		void			addNumber( int n );
-		void			addNumberRange( int n );
+		//void			addNumberRange( int n );
 		unsigned int	shortestSpan( void );
 		unsigned int	longestSpan( void );
 

@@ -88,10 +88,10 @@
 			return;
 		}
 
-		void	Span::addNumber( int n )
+		/*void	Span::addNumberRange( int n )
 		{
 			return;
-		}
+		}*/
 
 		
 		unsigned int	Span::shortestSpan( void )
