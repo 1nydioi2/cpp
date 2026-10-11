@@ -1,11 +1,12 @@
 #include <iostream>
+#include "Array.hpp"
+#include <cmath>
 
 
 
 class	Span
 {
 	public :
-
 
 		Span( void );
 		Span( Span &source );
@@ -14,19 +15,28 @@ class	Span
 
 		Span&	operator=( Span& other );
 
-		class	FullSpanException : public std::exception
+
+		class	AllocationFail : public std::exception
 		{
 			public:
 				virtual const char	*what() const throw();
 		};
 		
-		class	UnsufficientSpanException : public std::exception
+		class	SpanInsufficiencyException : public std::exception
 		{
 			public:
 				virtual const char	*what() const throw();
 		};
 
-		void	addNumber( int n );
-		int		shortestSpan( void );
-		int		longestSpan( void );
+		void			addNumber( int n );
+		void			addNumberRange( int n );
+		unsigned int	shortestSpan( void );
+		unsigned int	longestSpan( void );
+
+
+	private :
+
+		unsigned int	_size;
+		unsigned int	_filled;
+		int*			_array;
 };
