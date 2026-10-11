@@ -30,7 +30,7 @@ class	Span
 		};
 
 		void			addNumber( int n );
-		//void			addNumberRange( int n );
+		void			addNumberRange( unsigned int n, unsigned int e, int* source );
 		unsigned int	shortestSpan( void );
 		unsigned int	longestSpan( void );
 		void			printArray( void );

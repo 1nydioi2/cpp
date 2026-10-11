@@ -29,8 +29,11 @@ int	main( void )
 
 	std::cout << "D---------------------------------\n" << std::endl;
 	Span	d( 9999999 );
-	for ( int i = 0; i < 9999999; i++ )
-		d.addNumber( i );
+	
+	int	array[9999];
+	for ( int i = 0; i < 9999; i++ )
+		array[i] = i;
+	d.addNumberRange( 0, 9998, array );
 	d.printArray();
 	std::cout << d.shortestSpan() << '\t' << d.longestSpan() << std::endl;
 

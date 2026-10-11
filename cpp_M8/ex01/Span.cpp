@@ -78,7 +78,6 @@ void	Span::addNumber( int n )
 {
 	if ( _filled + 1 > _size )
 	{
-		std::cout << _filled << _size << std::endl;
 		throw ( SpanInsufficiencyException() );
 		return;
 	}
@@ -88,10 +87,24 @@ void	Span::addNumber( int n )
 	return;
 }
 
-/*void	Span::addNumberRange( int n )
+void	Span::addNumberRange( unsigned int b, unsigned int e, int* source )
 {
+	if ( _filled + e > _size )
+	{
+		throw ( SpanInsufficiencyException() );
+		return;
+	}
+
+	unsigned int i = b;
+	unsigned int j = 0;
+
+	while ( i <= e )
+		_array[i++] = source[j++];
+
+	_filled += e;
+
 	return;
-}*/
+}
 
 
 unsigned int	Span::shortestSpan( void )
