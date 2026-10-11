@@ -1,150 +1,187 @@
-#include <iostream>
-#include <limits>
 #include "Span.hpp"
 
 
 
-		Span::Span( void )
-		:	_size( 0 ),
-			_filled( 0 ),
-			_array( NULL)
-		{
-			return ;
-		}
-		
-		Span::Span( Span &source )
-		{
-			*this = source;
+Span::Span( void )
+:	_size( 0 ),
+	_filled( 0 ),
+	_array( NULL)
+{
+	return ;
+}
 
-			return;
-		}
+Span::Span( Span &source )
+{
+	*this = source;
 
-		Span::Span( unsigned int n )
-		:	_size( n ),
-			_filled( 0 ),
-			_array( NULL)
-		{
-			_array = new int[_size];
-			if ( _array == NULL )
-			{
-				throw ( AllocationFail() );
-				return;
-			}
+	return;
+}
 
-			return;
-		}
+Span::Span( unsigned int n )
+:	_size( n ),
+	_filled( 0 ),
+	_array( NULL)
+{
+	_array = new int[_size];
+	if ( _array == NULL )
+	{
+		throw ( AllocationFail() );
+		return;
+	}
 
-		Span::~Span( void )
-		{
-			if ( _array != NULL )
-				delete[] _array ;
+	return;
+}
 
-			return;
-		}
+Span::~Span( void )
+{
+	if ( _array != NULL )
+		delete[] _array ;
+
+	return;
+}
 
 
-		Span&	Span::operator=( Span& source )	
-		{
-			if ( &source == this )
-				return ( *this );
-		
-			_size = source._size;
-			_filled = source._filled;
+Span&	Span::operator=( Span& source )	
+{
+	if ( &source == this )
+		return ( *this );
 
-			_array = new int[_size];
-			if ( _array == NULL )
-			{
-				throw ( AllocationFail() );
-				return ( *this );
-			}
+	_size = source._size;
+	_filled = source._filled;
+
+	_array = new int[_size];
+	if ( _array == NULL )
+	{
+		throw ( AllocationFail() );
+		return ( *this );
+	}
+	
+	for ( unsigned int i = 0; i < _filled; i++ )
+		_array[i] = source._array[i];
 			
-			for ( unsigned int i = 0; i < _filled; i++ )
-				_array[i] = source._array[i];
-					
-			return ( *this );
-		}	
+	return ( *this );
+}	
 
 
-		const char*	Span::SpanInsufficiencyException::what() const throw()
+const char*	Span::SpanInsufficiencyException::what() const throw()
+{
+	return ( "Error : unsufficient span capacity to perform action" );
+}
+
+const char*	Span::AllocationFail::what() const throw()
+{
+	return ( "Error : allocation of one or more elements failed" );
+}
+
+
+void	Span::addNumber( int n )
+{
+	if ( _filled + 1 > _size )
+	{
+		std::cout << _filled << _size << std::endl;
+		throw ( SpanInsufficiencyException() );
+		return;
+	}
+	
+	_array[_filled++] = n;
+
+	return;
+}
+
+/*void	Span::addNumberRange( int n )
+{
+	return;
+}*/
+
+
+unsigned int	Span::shortestSpan( void )
+{
+	if ( _filled < 2 )
+	{
+		throw ( SpanInsufficiencyException() );
+		return ( 0 );
+	}
+
+	unsigned int	span = std::numeric_limits<unsigned int>::max();
+	unsigned int	span_tmp = 0;
+	for ( unsigned int i = 0; i < _filled - 1; i++ )
+	{
+		for ( unsigned int j = (i + 1); j < _filled; j++ )
 		{
-			return ( "Error : unsufficient span capacity to perform action" );
-		}
-		
-		const char*	Span::AllocationFail::what() const throw()
-		{
-			return ( "Error : allocation of one or more elements failed" );
-		}
-
-
-		void	Span::addNumber( int n )
-		{
-			if ( _filled + 1 > _size )
+			int	bigy = 0;
+			int	smol = 0;
+			if ( _array[i] > _array[j] )
 			{
-				throw ( SpanInsufficiencyException() );
-				return;
+				bigy = _array[i];
+				smol = _array[j];
 			}
+			else
+			{
+				bigy = _array[j];
+				smol = _array[i];
+			}
+
+			if ( bigy <= 0 && smol <= 0 )
+				span_tmp = 0 - ( bigy + smol );
+			else if ( bigy >= 0 && smol >= 0 )
+				span_tmp = bigy - smol;
+			else
+				span_tmp = 0 - ( smol - bigy );
+
+			if ( span > span_tmp )
+				span = span_tmp;
+		}
+	}
+
+	return ( span );
+}
+
+unsigned int	Span::longestSpan( void )
+{
+	if ( _filled < 2 )
+	{
+		throw ( SpanInsufficiencyException() );
+		return ( 0 );
+	}
+
+	unsigned int	span = 0;
+	unsigned int	span_tmp = 0;
+	int				bigy = 0;
+	int				smol = 0;
+	for ( unsigned int i = 0; i < _filled - 1; i++ )
+	{
+		for ( unsigned int j = (i + 1); j < _filled; j++ )
+		{
+			if ( _array[i] > _array[j] )
+			{
+				bigy = _array[i];
+				smol = _array[j];
+			}
+			else
+			{
+				bigy = _array[j];
+				smol = _array[i];
+			}
+
+			if ( bigy <= 0 && smol <= 0 )
+				span_tmp = 0 - ( bigy + smol );
+			else if ( bigy >= 0 && smol >= 0 )
+				span_tmp = bigy - smol;
+			else
+				span_tmp = 0 - ( smol - bigy );
 			
-			_array[_filled++] = n;
-
-			return;
+			if ( span < span_tmp )
+				span = span_tmp;
 		}
+	}
 
-		/*void	Span::addNumberRange( int n )
-		{
-			return;
-		}*/
+	return ( span );
+}
 
-		
-		unsigned int	Span::shortestSpan( void )
-		{
-			if ( _filled < 2 )
-			{
-				throw ( SpanInsufficiencyException() );
-				return ( 0 );
-			}
+void	Span::printArray( void )
+{
+	for ( unsigned int i = 0; i < _filled; i++ )
+		std::cout << _array[i] << std::endl;
 
-			unsigned int	span = std::numeric_limits<unsigned int>::max();
-			unsigned int	span_tmp = 0;
-			for ( unsigned int i = 0; i < _filled - 1; i++ )
-			{
-				if ( _array[i] <= 0 && _array[i + 1] <= 0 )
-					span_tmp = 0 - ( _array[i] - _array[i + 1] );
-				else if ( _array[i] >= 0 && _array[i + 1] >= 0 )
-					span_tmp = _array[i] + _array[i + 1];
-				else if ( _array[i] <= 0 )
-					span_tmp = _array[i + 1] - _array[i];
-				else
-					span_tmp = _array[i] - _array[i + 1];
-				if ( span > span_tmp )
-					span = span_tmp;
-			}
-
-			return ( span );
-		}
-		
-		unsigned int	Span::longestSpan( void )
-		{
-			if ( _filled < 2 )
-			{
-				throw ( SpanInsufficiencyException() );
-				return ( 0 );
-			}
-
-			unsigned int	span = 0;
-			unsigned int	span_tmp = 0;
-			for ( unsigned int i = 0; i < _filled - 1; i++ )
-			{
-				if ( _array[i] <= 0 && _array[i + 1] <= 0 )
-					span_tmp = 0 - ( _array[i] - _array[i + 1] );
-				else if ( _array[i] >= 0 && _array[i + 1] >= 0 )
-					span_tmp = _array[i] + _array[i + 1];
-				else if ( _array[i] <= 0 )
-					span_tmp = _array[i + 1] - _array[i];
-				else
-					span_tmp = _array[i] - _array[i + 1];
-				if ( span < span_tmp )
-					span = span_tmp;
-			}
-
-			return ( span );
-		}
+	return;
+}

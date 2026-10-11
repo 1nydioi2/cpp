@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <limits>
 
 
 
@@ -32,6 +33,7 @@ class	Span
 		//void			addNumberRange( int n );
 		unsigned int	shortestSpan( void );
 		unsigned int	longestSpan( void );
+		void			printArray( void );
 
 
 	private :
