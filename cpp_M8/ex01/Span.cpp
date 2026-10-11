@@ -1,11 +1,13 @@
 #include <iostream>
+#include <limits>
+#include "Span.hpp"
 
 
 
 		Span::Span( void )
 		:	_size( 0 ),
-			_filled( 0 );
-			_array( NULL),
+			_filled( 0 ),
+			_array( NULL)
 		{
 			return ;
 		}
@@ -18,17 +20,16 @@
 		}
 
 		Span::Span( unsigned int n )
-		:	_size( 0 ),
-			_filled( 0 );
-			_array( NULL),
+		:	_size( n ),
+			_filled( 0 ),
+			_array( NULL)
 		{
 			_array = new int[_size];
 			if ( _array == NULL )
 			{
 				throw ( AllocationFail() );
-				return ( NULL );
+				return;
 			}
-
 
 			return;
 		}
@@ -42,10 +43,10 @@
 		}
 
 
-		Span::Span&	operator=( Span& source )	
+		Span&	Span::operator=( Span& source )	
 		{
-			if ( &other == this )
-				return ( this );
+			if ( &source == this )
+				return ( *this );
 		
 			_size = source._size;
 			_filled = source._filled;
@@ -54,17 +55,17 @@
 			if ( _array == NULL )
 			{
 				throw ( AllocationFail() );
-				return ( NULL );
+				return ( *this );
 			}
 			
 			for ( unsigned int i = 0; i < _filled; i++ )
 				_array[i] = source._array[i];
 					
-			return ( this );
+			return ( *this );
 		}	
 
 
-		const char*	Span::SpanUnsufficiencyException::what() const throw()
+		const char*	Span::SpanInsufficiencyException::what() const throw()
 		{
 			return ( "Error : unsufficient span capacity to perform action" );
 		}
@@ -102,9 +103,9 @@
 				return ( 0 );
 			}
 
-			unsigned int	span = UINT_MAX;
+			unsigned int	span = std::numeric_limits<unsigned int>::max();
 			unsigned int	span_tmp = 0;
-			for ( int i = 0; i < _filled - 1; i++ )
+			for ( unsigned int i = 0; i < _filled - 1; i++ )
 			{
 				if ( _array[i] <= 0 && _array[i + 1] <= 0 )
 					span_tmp = 0 - ( _array[i] - _array[i + 1] );
@@ -121,7 +122,7 @@
 			return ( span );
 		}
 		
-		int	Span::longestSpan( void )
+		unsigned int	Span::longestSpan( void )
 		{
 			if ( _filled < 2 )
 			{
@@ -131,7 +132,7 @@
 
 			unsigned int	span = 0;
 			unsigned int	span_tmp = 0;
-			for ( int i = 0; i < _filled - 1; i++ )
+			for ( unsigned int i = 0; i < _filled - 1; i++ )
 			{
 				if ( _array[i] <= 0 && _array[i + 1] <= 0 )
 					span_tmp = 0 - ( _array[i] - _array[i + 1] );
@@ -147,4 +148,3 @@
 
 			return ( span );
 		}
-};
